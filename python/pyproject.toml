@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "nia-ai-api-client"
+name = "nia-py"
 version = "1.0.0"
 description = "A client library for accessing Nia AI API"
 authors = []
 readme = "README.md"
 packages = [
-    { include = "nia_ai_api_client" },
+    { include = "nia_py" },
 ]
-include = ["nia_ai_api_client/py.typed"]
+include = ["nia_py/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
