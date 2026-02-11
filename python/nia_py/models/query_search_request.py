@@ -9,6 +9,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.local_source_filters import LocalSourceFilters
     from ..models.query_search_request_data_sources_item_type_1 import QuerySearchRequestDataSourcesItemType1
     from ..models.query_search_request_local_folders_item_type_1 import QuerySearchRequestLocalFoldersItemType1
     from ..models.query_search_request_messages_item import QuerySearchRequestMessagesItem
@@ -31,6 +32,8 @@ class QuerySearchRequest:
             be strings (display_name or local_folder_id) or dicts with 'local_folder_id' or 'identifier' fields. Local
             folders are private and user-scoped.
         category (None | str | Unset): Filter local folder results by classification category (e.g., 'Work', 'Personal')
+        local_source_filters (LocalSourceFilters | None | Unset): Filters for local/personal sources (messages,
+            contacts, etc.)
         search_mode (str | Unset): Search mode: 'repositories', 'sources', or 'unified' Default: 'unified'.
         stream (bool | Unset): Whether to stream the response Default: False.
         include_sources (bool | Unset): Whether to include source texts in the response Default: True.
@@ -54,6 +57,7 @@ class QuerySearchRequest:
     data_sources: list[QuerySearchRequestDataSourcesItemType1 | str] | Unset = UNSET
     local_folders: list[QuerySearchRequestLocalFoldersItemType1 | str] | Unset = UNSET
     category: None | str | Unset = UNSET
+    local_source_filters: LocalSourceFilters | None | Unset = UNSET
     search_mode: str | Unset = "unified"
     stream: bool | Unset = False
     include_sources: bool | Unset = True
@@ -68,6 +72,7 @@ class QuerySearchRequest:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.local_source_filters import LocalSourceFilters
         from ..models.query_search_request_data_sources_item_type_1 import QuerySearchRequestDataSourcesItemType1
         from ..models.query_search_request_local_folders_item_type_1 import QuerySearchRequestLocalFoldersItemType1
         from ..models.query_search_request_repositories_item_type_1 import QuerySearchRequestRepositoriesItemType1
@@ -116,6 +121,14 @@ class QuerySearchRequest:
         else:
             category = self.category
 
+        local_source_filters: dict[str, Any] | None | Unset
+        if isinstance(self.local_source_filters, Unset):
+            local_source_filters = UNSET
+        elif isinstance(self.local_source_filters, LocalSourceFilters):
+            local_source_filters = self.local_source_filters.to_dict()
+        else:
+            local_source_filters = self.local_source_filters
+
         search_mode = self.search_mode
 
         stream = self.stream
@@ -157,6 +170,8 @@ class QuerySearchRequest:
             field_dict["local_folders"] = local_folders
         if category is not UNSET:
             field_dict["category"] = category
+        if local_source_filters is not UNSET:
+            field_dict["local_source_filters"] = local_source_filters
         if search_mode is not UNSET:
             field_dict["search_mode"] = search_mode
         if stream is not UNSET:
@@ -184,6 +199,7 @@ class QuerySearchRequest:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.local_source_filters import LocalSourceFilters
         from ..models.query_search_request_data_sources_item_type_1 import QuerySearchRequestDataSourcesItemType1
         from ..models.query_search_request_local_folders_item_type_1 import QuerySearchRequestLocalFoldersItemType1
         from ..models.query_search_request_messages_item import QuerySearchRequestMessagesItem
@@ -269,6 +285,23 @@ class QuerySearchRequest:
 
         category = _parse_category(d.pop("category", UNSET))
 
+        def _parse_local_source_filters(data: object) -> LocalSourceFilters | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                local_source_filters_type_0 = LocalSourceFilters.from_dict(data)
+
+                return local_source_filters_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(LocalSourceFilters | None | Unset, data)
+
+        local_source_filters = _parse_local_source_filters(d.pop("local_source_filters", UNSET))
+
         search_mode = d.pop("search_mode", UNSET)
 
         stream = d.pop("stream", UNSET)
@@ -306,6 +339,7 @@ class QuerySearchRequest:
             data_sources=data_sources,
             local_folders=local_folders,
             category=category,
+            local_source_filters=local_source_filters,
             search_mode=search_mode,
             stream=stream,
             include_sources=include_sources,

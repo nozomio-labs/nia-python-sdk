@@ -109,6 +109,7 @@ from .indexed_resource import IndexedResource
 from .lineage_input import LineageInput
 from .lineage_metadata import LineageMetadata
 from .list_sources_v2_sources_get_type_type_0 import ListSourcesV2SourcesGetTypeType0
+from .local_source_filters import LocalSourceFilters
 from .mapping_item import MappingItem
 from .nia_references import NiaReferences
 from .oracle_research_request import OracleResearchRequest
@@ -290,6 +291,7 @@ __all__ = (
     "LineageInput",
     "LineageMetadata",
     "ListSourcesV2SourcesGetTypeType0",
+    "LocalSourceFilters",
     "MappingItem",
     "NiaReferences",
     "OracleResearchRequest",
