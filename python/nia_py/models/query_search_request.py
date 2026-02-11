@@ -44,6 +44,8 @@ class QuerySearchRequest:
         reasoning_strategy (str | Unset): Retrieval strategy: 'vector' (default similarity search), 'tree' (LLM-guided
             tree navigation for PDFs), or 'hybrid' (both combined) Default: 'vector'.
         max_tokens (int | None | Unset): Maximum tokens in response. Results truncated when budget reached.
+        model (None | str | Unset): Synthesis model override. Allowed: claude-sonnet-4-5, gpt-5.2-2025-12-11, claude-
+            haiku-4-5-20251001
         semantic_cache_threshold (float | Unset): Minimum similarity for semantic cache hit (non-streaming only)
             Default: 0.92.
         bypass_semantic_cache (bool | Unset): Skip semantic cache (L2) lookup Default: False.
@@ -65,6 +67,7 @@ class QuerySearchRequest:
     skip_llm: bool | Unset = False
     reasoning_strategy: str | Unset = "vector"
     max_tokens: int | None | Unset = UNSET
+    model: None | str | Unset = UNSET
     semantic_cache_threshold: float | Unset = 0.92
     bypass_semantic_cache: bool | Unset = False
     include_follow_ups: bool | Unset = False
@@ -147,6 +150,12 @@ class QuerySearchRequest:
         else:
             max_tokens = self.max_tokens
 
+        model: None | str | Unset
+        if isinstance(self.model, Unset):
+            model = UNSET
+        else:
+            model = self.model
+
         semantic_cache_threshold = self.semantic_cache_threshold
 
         bypass_semantic_cache = self.bypass_semantic_cache
@@ -186,6 +195,8 @@ class QuerySearchRequest:
             field_dict["reasoning_strategy"] = reasoning_strategy
         if max_tokens is not UNSET:
             field_dict["max_tokens"] = max_tokens
+        if model is not UNSET:
+            field_dict["model"] = model
         if semantic_cache_threshold is not UNSET:
             field_dict["semantic_cache_threshold"] = semantic_cache_threshold
         if bypass_semantic_cache is not UNSET:
@@ -323,6 +334,15 @@ class QuerySearchRequest:
 
         max_tokens = _parse_max_tokens(d.pop("max_tokens", UNSET))
 
+        def _parse_model(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        model = _parse_model(d.pop("model", UNSET))
+
         semantic_cache_threshold = d.pop("semantic_cache_threshold", UNSET)
 
         bypass_semantic_cache = d.pop("bypass_semantic_cache", UNSET)
@@ -347,6 +367,7 @@ class QuerySearchRequest:
             skip_llm=skip_llm,
             reasoning_strategy=reasoning_strategy,
             max_tokens=max_tokens,
+            model=model,
             semantic_cache_threshold=semantic_cache_threshold,
             bypass_semantic_cache=bypass_semantic_cache,
             include_follow_ups=include_follow_ups,
