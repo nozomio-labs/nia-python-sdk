@@ -17,25 +17,25 @@ class DocGrepMatchDetail:
 
     Attributes:
         line (str): The matching line content
-        context_start_line (int): Starting line number of context
         context (list[str] | Unset): Context lines around the match
+        context_start_line (int | Unset): Starting line number of context Default: 1.
         line_number (int | None | Unset): Line number of the match
     """
 
     line: str
-    context_start_line: int
     context: list[str] | Unset = UNSET
+    context_start_line: int | Unset = 1
     line_number: int | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         line = self.line
 
-        context_start_line = self.context_start_line
-
         context: list[str] | Unset = UNSET
         if not isinstance(self.context, Unset):
             context = self.context
+
+        context_start_line = self.context_start_line
 
         line_number: int | None | Unset
         if isinstance(self.line_number, Unset):
@@ -48,11 +48,12 @@ class DocGrepMatchDetail:
         field_dict.update(
             {
                 "line": line,
-                "context_start_line": context_start_line,
             }
         )
         if context is not UNSET:
             field_dict["context"] = context
+        if context_start_line is not UNSET:
+            field_dict["context_start_line"] = context_start_line
         if line_number is not UNSET:
             field_dict["line_number"] = line_number
 
@@ -63,9 +64,9 @@ class DocGrepMatchDetail:
         d = dict(src_dict)
         line = d.pop("line")
 
-        context_start_line = d.pop("context_start_line")
-
         context = cast(list[str], d.pop("context", UNSET))
+
+        context_start_line = d.pop("context_start_line", UNSET)
 
         def _parse_line_number(data: object) -> int | None | Unset:
             if data is None:
@@ -78,8 +79,8 @@ class DocGrepMatchDetail:
 
         doc_grep_match_detail = cls(
             line=line,
-            context_start_line=context_start_line,
             context=context,
+            context_start_line=context_start_line,
             line_number=line_number,
         )
 
