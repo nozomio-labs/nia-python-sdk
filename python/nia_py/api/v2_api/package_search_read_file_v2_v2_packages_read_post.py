@@ -1,45 +1,39 @@
 from http import HTTPStatus
 from typing import Any
-from urllib.parse import quote
 
 import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.doc_ls_response import DocLsResponse
 from ...models.http_validation_error import HTTPValidationError
-from ...types import UNSET, Response, Unset
+from ...models.package_search_read_file_request import PackageSearchReadFileRequest
+from ...types import Response
 
 
 def _get_kwargs(
-    source_id: str,
     *,
-    path: str | Unset = "/",
+    body: PackageSearchReadFileRequest,
 ) -> dict[str, Any]:
-
-    params: dict[str, Any] = {}
-
-    params["path"] = path
-
-    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
-        "method": "get",
-        "url": "/data-sources/{source_id}/ls".format(
-            source_id=quote(str(source_id), safe=""),
-        ),
-        "params": params,
+        "method": "post",
+        "url": "/packages/read",
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> DocLsResponse | HTTPValidationError | None:
+) -> Any | HTTPValidationError | None:
     if response.status_code == 200:
-        response_200 = DocLsResponse.from_dict(response.json())
-
+        response_200 = response.json()
         return response_200
 
     if response.status_code == 422:
@@ -55,7 +49,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[DocLsResponse | HTTPValidationError]:
+) -> Response[Any | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -65,30 +59,27 @@ def _build_response(
 
 
 def sync_detailed(
-    source_id: str,
     *,
     client: AuthenticatedClient | Client,
-    path: str | Unset = "/",
-) -> Response[DocLsResponse | HTTPValidationError]:
-    """List directory
+    body: PackageSearchReadFileRequest,
+) -> Response[Any | HTTPValidationError]:
+    """Read package file
 
-     List files and subdirectories at a virtual path (like unix ls).
+     Read specific lines from a package source file. Max 200 lines per request.
 
     Args:
-        source_id (str):
-        path (str | Unset):  Default: '/'.
+        body (PackageSearchReadFileRequest): Request model for reading package file
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DocLsResponse | HTTPValidationError]
+        Response[Any | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
-        source_id=source_id,
-        path=path,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -99,59 +90,53 @@ def sync_detailed(
 
 
 def sync(
-    source_id: str,
     *,
     client: AuthenticatedClient | Client,
-    path: str | Unset = "/",
-) -> DocLsResponse | HTTPValidationError | None:
-    """List directory
+    body: PackageSearchReadFileRequest,
+) -> Any | HTTPValidationError | None:
+    """Read package file
 
-     List files and subdirectories at a virtual path (like unix ls).
+     Read specific lines from a package source file. Max 200 lines per request.
 
     Args:
-        source_id (str):
-        path (str | Unset):  Default: '/'.
+        body (PackageSearchReadFileRequest): Request model for reading package file
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DocLsResponse | HTTPValidationError
+        Any | HTTPValidationError
     """
 
     return sync_detailed(
-        source_id=source_id,
         client=client,
-        path=path,
+        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    source_id: str,
     *,
     client: AuthenticatedClient | Client,
-    path: str | Unset = "/",
-) -> Response[DocLsResponse | HTTPValidationError]:
-    """List directory
+    body: PackageSearchReadFileRequest,
+) -> Response[Any | HTTPValidationError]:
+    """Read package file
 
-     List files and subdirectories at a virtual path (like unix ls).
+     Read specific lines from a package source file. Max 200 lines per request.
 
     Args:
-        source_id (str):
-        path (str | Unset):  Default: '/'.
+        body (PackageSearchReadFileRequest): Request model for reading package file
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[DocLsResponse | HTTPValidationError]
+        Response[Any | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
-        source_id=source_id,
-        path=path,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -160,31 +145,28 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    source_id: str,
     *,
     client: AuthenticatedClient | Client,
-    path: str | Unset = "/",
-) -> DocLsResponse | HTTPValidationError | None:
-    """List directory
+    body: PackageSearchReadFileRequest,
+) -> Any | HTTPValidationError | None:
+    """Read package file
 
-     List files and subdirectories at a virtual path (like unix ls).
+     Read specific lines from a package source file. Max 200 lines per request.
 
     Args:
-        source_id (str):
-        path (str | Unset):  Default: '/'.
+        body (PackageSearchReadFileRequest): Request model for reading package file
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        DocLsResponse | HTTPValidationError
+        Any | HTTPValidationError
     """
 
     return (
         await asyncio_detailed(
-            source_id=source_id,
             client=client,
-            path=path,
+            body=body,
         )
     ).parsed

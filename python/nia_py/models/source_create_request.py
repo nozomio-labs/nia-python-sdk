@@ -43,6 +43,9 @@ class SourceCreateRequest:
         is_pdf (bool | None | Unset):
         display_name (None | str | Unset):
         focus_instructions (None | str | Unset):
+        extract_branding (bool | None | Unset):
+        extract_images (bool | None | Unset):
+        config (None | str | Unset):
         folder_name (None | str | Unset):
         folder_path (None | str | Unset):
         files (list[FileItem] | None | Unset):
@@ -71,6 +74,9 @@ class SourceCreateRequest:
     is_pdf: bool | None | Unset = UNSET
     display_name: None | str | Unset = UNSET
     focus_instructions: None | str | Unset = UNSET
+    extract_branding: bool | None | Unset = UNSET
+    extract_images: bool | None | Unset = UNSET
+    config: None | str | Unset = UNSET
     folder_name: None | str | Unset = UNSET
     folder_path: None | str | Unset = UNSET
     files: list[FileItem] | None | Unset = UNSET
@@ -217,6 +223,24 @@ class SourceCreateRequest:
         else:
             focus_instructions = self.focus_instructions
 
+        extract_branding: bool | None | Unset
+        if isinstance(self.extract_branding, Unset):
+            extract_branding = UNSET
+        else:
+            extract_branding = self.extract_branding
+
+        extract_images: bool | None | Unset
+        if isinstance(self.extract_images, Unset):
+            extract_images = UNSET
+        else:
+            extract_images = self.extract_images
+
+        config: None | str | Unset
+        if isinstance(self.config, Unset):
+            config = UNSET
+        else:
+            config = self.config
+
         folder_name: None | str | Unset
         if isinstance(self.folder_name, Unset):
             folder_name = UNSET
@@ -298,6 +322,12 @@ class SourceCreateRequest:
             field_dict["display_name"] = display_name
         if focus_instructions is not UNSET:
             field_dict["focus_instructions"] = focus_instructions
+        if extract_branding is not UNSET:
+            field_dict["extract_branding"] = extract_branding
+        if extract_images is not UNSET:
+            field_dict["extract_images"] = extract_images
+        if config is not UNSET:
+            field_dict["config"] = config
         if folder_name is not UNSET:
             field_dict["folder_name"] = folder_name
         if folder_path is not UNSET:
@@ -530,6 +560,33 @@ class SourceCreateRequest:
 
         focus_instructions = _parse_focus_instructions(d.pop("focus_instructions", UNSET))
 
+        def _parse_extract_branding(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        extract_branding = _parse_extract_branding(d.pop("extract_branding", UNSET))
+
+        def _parse_extract_images(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        extract_images = _parse_extract_images(d.pop("extract_images", UNSET))
+
+        def _parse_config(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        config = _parse_config(d.pop("config", UNSET))
+
         def _parse_folder_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -610,6 +667,9 @@ class SourceCreateRequest:
             is_pdf=is_pdf,
             display_name=display_name,
             focus_instructions=focus_instructions,
+            extract_branding=extract_branding,
+            extract_images=extract_images,
+            config=config,
             folder_name=folder_name,
             folder_path=folder_path,
             files=files,

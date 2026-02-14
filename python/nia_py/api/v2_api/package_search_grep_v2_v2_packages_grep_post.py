@@ -1,36 +1,39 @@
 from http import HTTPStatus
 from typing import Any
-from urllib.parse import quote
 
 import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.http_validation_error import HTTPValidationError
-from ...models.repository_status import RepositoryStatus
+from ...models.package_search_grep_request import PackageSearchGrepRequest
 from ...types import Response
 
 
 def _get_kwargs(
-    repository_id: str,
+    *,
+    body: PackageSearchGrepRequest,
 ) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
-        "method": "get",
-        "url": "/repositories/{repository_id}".format(
-            repository_id=quote(str(repository_id), safe=""),
-        ),
+        "method": "post",
+        "url": "/packages/grep",
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> HTTPValidationError | RepositoryStatus | None:
+) -> Any | HTTPValidationError | None:
     if response.status_code == 200:
-        response_200 = RepositoryStatus.from_dict(response.json())
-
+        response_200 = response.json()
         return response_200
 
     if response.status_code == 422:
@@ -46,7 +49,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[HTTPValidationError | RepositoryStatus]:
+) -> Response[Any | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -56,27 +59,27 @@ def _build_response(
 
 
 def sync_detailed(
-    repository_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[HTTPValidationError | RepositoryStatus]:
-    """Get repository status
+    body: PackageSearchGrepRequest,
+) -> Response[Any | HTTPValidationError]:
+    """Grep package source
 
-     Check the current indexing status of a repository.
+     Regex search over public package source code (npm, PyPI, crates.io, Go modules).
 
     Args:
-        repository_id (str):
+        body (PackageSearchGrepRequest): Request model for package grep search
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | RepositoryStatus]
+        Response[Any | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
-        repository_id=repository_id,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -87,53 +90,53 @@ def sync_detailed(
 
 
 def sync(
-    repository_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> HTTPValidationError | RepositoryStatus | None:
-    """Get repository status
+    body: PackageSearchGrepRequest,
+) -> Any | HTTPValidationError | None:
+    """Grep package source
 
-     Check the current indexing status of a repository.
+     Regex search over public package source code (npm, PyPI, crates.io, Go modules).
 
     Args:
-        repository_id (str):
+        body (PackageSearchGrepRequest): Request model for package grep search
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | RepositoryStatus
+        Any | HTTPValidationError
     """
 
     return sync_detailed(
-        repository_id=repository_id,
         client=client,
+        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    repository_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> Response[HTTPValidationError | RepositoryStatus]:
-    """Get repository status
+    body: PackageSearchGrepRequest,
+) -> Response[Any | HTTPValidationError]:
+    """Grep package source
 
-     Check the current indexing status of a repository.
+     Regex search over public package source code (npm, PyPI, crates.io, Go modules).
 
     Args:
-        repository_id (str):
+        body (PackageSearchGrepRequest): Request model for package grep search
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | RepositoryStatus]
+        Response[Any | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
-        repository_id=repository_id,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -142,28 +145,28 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    repository_id: str,
     *,
     client: AuthenticatedClient | Client,
-) -> HTTPValidationError | RepositoryStatus | None:
-    """Get repository status
+    body: PackageSearchGrepRequest,
+) -> Any | HTTPValidationError | None:
+    """Grep package source
 
-     Check the current indexing status of a repository.
+     Regex search over public package source code (npm, PyPI, crates.io, Go modules).
 
     Args:
-        repository_id (str):
+        body (PackageSearchGrepRequest): Request model for package grep search
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | RepositoryStatus
+        Any | HTTPValidationError
     """
 
     return (
         await asyncio_detailed(
-            repository_id=repository_id,
             client=client,
+            body=body,
         )
     ).parsed

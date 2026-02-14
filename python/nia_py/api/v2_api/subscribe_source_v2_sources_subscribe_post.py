@@ -1,29 +1,25 @@
 from http import HTTPStatus
 from typing import Any
-from urllib.parse import quote
 
 import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.code_grep_request import CodeGrepRequest
-from ...models.code_grep_response import CodeGrepResponse
+from ...models.global_source_subscribe_request import GlobalSourceSubscribeRequest
+from ...models.global_source_subscribe_response import GlobalSourceSubscribeResponse
 from ...models.http_validation_error import HTTPValidationError
 from ...types import Response
 
 
 def _get_kwargs(
-    repository_id: str,
     *,
-    body: CodeGrepRequest,
+    body: GlobalSourceSubscribeRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": "/repositories/{repository_id}/grep".format(
-            repository_id=quote(str(repository_id), safe=""),
-        ),
+        "url": "/sources/subscribe",
     }
 
     _kwargs["json"] = body.to_dict()
@@ -36,9 +32,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> CodeGrepResponse | HTTPValidationError | None:
+) -> GlobalSourceSubscribeResponse | HTTPValidationError | None:
     if response.status_code == 200:
-        response_200 = CodeGrepResponse.from_dict(response.json())
+        response_200 = GlobalSourceSubscribeResponse.from_dict(response.json())
 
         return response_200
 
@@ -55,7 +51,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[CodeGrepResponse | HTTPValidationError]:
+) -> Response[GlobalSourceSubscribeResponse | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -65,30 +61,27 @@ def _build_response(
 
 
 def sync_detailed(
-    repository_id: str,
     *,
     client: AuthenticatedClient | Client,
-    body: CodeGrepRequest,
-) -> Response[CodeGrepResponse | HTTPValidationError]:
-    """Grep repository code
+    body: GlobalSourceSubscribeRequest,
+) -> Response[GlobalSourceSubscribeResponse | HTTPValidationError]:
+    """Subscribe to a global source
 
-     Regex search over indexed code. Exhaustive by default (searches all chunks). Supports context lines,
-    case sensitivity, output modes.
+     Subscribe to an existing globally indexed public source. Creates a local reference for instant
+    access without re-indexing.
 
     Args:
-        repository_id (str):
-        body (CodeGrepRequest): Request model for code grep search with advanced options.
+        body (GlobalSourceSubscribeRequest): Request model for subscribing to a global source
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodeGrepResponse | HTTPValidationError]
+        Response[GlobalSourceSubscribeResponse | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
-        repository_id=repository_id,
         body=body,
     )
 
@@ -100,60 +93,54 @@ def sync_detailed(
 
 
 def sync(
-    repository_id: str,
     *,
     client: AuthenticatedClient | Client,
-    body: CodeGrepRequest,
-) -> CodeGrepResponse | HTTPValidationError | None:
-    """Grep repository code
+    body: GlobalSourceSubscribeRequest,
+) -> GlobalSourceSubscribeResponse | HTTPValidationError | None:
+    """Subscribe to a global source
 
-     Regex search over indexed code. Exhaustive by default (searches all chunks). Supports context lines,
-    case sensitivity, output modes.
+     Subscribe to an existing globally indexed public source. Creates a local reference for instant
+    access without re-indexing.
 
     Args:
-        repository_id (str):
-        body (CodeGrepRequest): Request model for code grep search with advanced options.
+        body (GlobalSourceSubscribeRequest): Request model for subscribing to a global source
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        CodeGrepResponse | HTTPValidationError
+        GlobalSourceSubscribeResponse | HTTPValidationError
     """
 
     return sync_detailed(
-        repository_id=repository_id,
         client=client,
         body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    repository_id: str,
     *,
     client: AuthenticatedClient | Client,
-    body: CodeGrepRequest,
-) -> Response[CodeGrepResponse | HTTPValidationError]:
-    """Grep repository code
+    body: GlobalSourceSubscribeRequest,
+) -> Response[GlobalSourceSubscribeResponse | HTTPValidationError]:
+    """Subscribe to a global source
 
-     Regex search over indexed code. Exhaustive by default (searches all chunks). Supports context lines,
-    case sensitivity, output modes.
+     Subscribe to an existing globally indexed public source. Creates a local reference for instant
+    access without re-indexing.
 
     Args:
-        repository_id (str):
-        body (CodeGrepRequest): Request model for code grep search with advanced options.
+        body (GlobalSourceSubscribeRequest): Request model for subscribing to a global source
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[CodeGrepResponse | HTTPValidationError]
+        Response[GlobalSourceSubscribeResponse | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
-        repository_id=repository_id,
         body=body,
     )
 
@@ -163,31 +150,28 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    repository_id: str,
     *,
     client: AuthenticatedClient | Client,
-    body: CodeGrepRequest,
-) -> CodeGrepResponse | HTTPValidationError | None:
-    """Grep repository code
+    body: GlobalSourceSubscribeRequest,
+) -> GlobalSourceSubscribeResponse | HTTPValidationError | None:
+    """Subscribe to a global source
 
-     Regex search over indexed code. Exhaustive by default (searches all chunks). Supports context lines,
-    case sensitivity, output modes.
+     Subscribe to an existing globally indexed public source. Creates a local reference for instant
+    access without re-indexing.
 
     Args:
-        repository_id (str):
-        body (CodeGrepRequest): Request model for code grep search with advanced options.
+        body (GlobalSourceSubscribeRequest): Request model for subscribing to a global source
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        CodeGrepResponse | HTTPValidationError
+        GlobalSourceSubscribeResponse | HTTPValidationError
     """
 
     return (
         await asyncio_detailed(
-            repository_id=repository_id,
             client=client,
             body=body,
         )

@@ -6,20 +6,19 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.http_validation_error import HTTPValidationError
-from ...models.rename_request_with_identifier import RenameRequestWithIdentifier
-from ...models.rename_response import RenameResponse
+from ...models.package_search_hybrid_request import PackageSearchHybridRequest
 from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: RenameRequestWithIdentifier,
+    body: PackageSearchHybridRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
-        "method": "patch",
-        "url": "/data-sources/rename",
+        "method": "post",
+        "url": "/packages/search",
     }
 
     _kwargs["json"] = body.to_dict()
@@ -32,10 +31,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> HTTPValidationError | RenameResponse | None:
+) -> Any | HTTPValidationError | None:
     if response.status_code == 200:
-        response_200 = RenameResponse.from_dict(response.json())
-
+        response_200 = response.json()
         return response_200
 
     if response.status_code == 422:
@@ -51,7 +49,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[HTTPValidationError | RenameResponse]:
+) -> Response[Any | HTTPValidationError]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -63,21 +61,21 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    body: RenameRequestWithIdentifier,
-) -> Response[HTTPValidationError | RenameResponse]:
-    """Rename data source
+    body: PackageSearchHybridRequest,
+) -> Response[Any | HTTPValidationError]:
+    """Semantic package search
 
-     Update display name using flexible identifier (ID, name, or URL).
+     Hybrid semantic + keyword search over package source. 1-5 natural language queries.
 
     Args:
-        body (RenameRequestWithIdentifier):
+        body (PackageSearchHybridRequest): Request model for package hybrid search
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | RenameResponse]
+        Response[Any | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
@@ -94,21 +92,21 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    body: RenameRequestWithIdentifier,
-) -> HTTPValidationError | RenameResponse | None:
-    """Rename data source
+    body: PackageSearchHybridRequest,
+) -> Any | HTTPValidationError | None:
+    """Semantic package search
 
-     Update display name using flexible identifier (ID, name, or URL).
+     Hybrid semantic + keyword search over package source. 1-5 natural language queries.
 
     Args:
-        body (RenameRequestWithIdentifier):
+        body (PackageSearchHybridRequest): Request model for package hybrid search
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | RenameResponse
+        Any | HTTPValidationError
     """
 
     return sync_detailed(
@@ -120,21 +118,21 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    body: RenameRequestWithIdentifier,
-) -> Response[HTTPValidationError | RenameResponse]:
-    """Rename data source
+    body: PackageSearchHybridRequest,
+) -> Response[Any | HTTPValidationError]:
+    """Semantic package search
 
-     Update display name using flexible identifier (ID, name, or URL).
+     Hybrid semantic + keyword search over package source. 1-5 natural language queries.
 
     Args:
-        body (RenameRequestWithIdentifier):
+        body (PackageSearchHybridRequest): Request model for package hybrid search
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | RenameResponse]
+        Response[Any | HTTPValidationError]
     """
 
     kwargs = _get_kwargs(
@@ -149,21 +147,21 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    body: RenameRequestWithIdentifier,
-) -> HTTPValidationError | RenameResponse | None:
-    """Rename data source
+    body: PackageSearchHybridRequest,
+) -> Any | HTTPValidationError | None:
+    """Semantic package search
 
-     Update display name using flexible identifier (ID, name, or URL).
+     Hybrid semantic + keyword search over package source. 1-5 natural language queries.
 
     Args:
-        body (RenameRequestWithIdentifier):
+        body (PackageSearchHybridRequest): Request model for package hybrid search
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | RenameResponse
+        Any | HTTPValidationError
     """
 
     return (
