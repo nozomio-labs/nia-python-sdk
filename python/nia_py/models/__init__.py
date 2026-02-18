@@ -91,6 +91,8 @@ from .source_resolve_response import SourceResolveResponse
 from .source_resolve_response_type import SourceResolveResponseType
 from .source_type import SourceType
 from .source_update_request import SourceUpdateRequest
+from .source_upload_url_request import SourceUploadUrlRequest
+from .source_upload_url_response import SourceUploadUrlResponse
 from .subscribe_response import SubscribeResponse
 from .subscription_result_item import SubscriptionResultItem
 from .subscription_results import SubscriptionResults
@@ -198,6 +200,8 @@ __all__ = (
     "SourceResolveResponseType",
     "SourceType",
     "SourceUpdateRequest",
+    "SourceUploadUrlRequest",
+    "SourceUploadUrlResponse",
     "SubscribeResponse",
     "SubscriptionResultItem",
     "SubscriptionResults",

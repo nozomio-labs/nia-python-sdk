@@ -42,6 +42,7 @@ class SourceCreateRequest:
         add_as_global_source (bool | None | Unset):  Default: True.
         is_pdf (bool | None | Unset):
         display_name (None | str | Unset):
+        gcs_path (None | str | Unset):
         focus_instructions (None | str | Unset):
         extract_branding (bool | None | Unset):
         extract_images (bool | None | Unset):
@@ -73,6 +74,7 @@ class SourceCreateRequest:
     add_as_global_source: bool | None | Unset = True
     is_pdf: bool | None | Unset = UNSET
     display_name: None | str | Unset = UNSET
+    gcs_path: None | str | Unset = UNSET
     focus_instructions: None | str | Unset = UNSET
     extract_branding: bool | None | Unset = UNSET
     extract_images: bool | None | Unset = UNSET
@@ -217,6 +219,12 @@ class SourceCreateRequest:
         else:
             display_name = self.display_name
 
+        gcs_path: None | str | Unset
+        if isinstance(self.gcs_path, Unset):
+            gcs_path = UNSET
+        else:
+            gcs_path = self.gcs_path
+
         focus_instructions: None | str | Unset
         if isinstance(self.focus_instructions, Unset):
             focus_instructions = UNSET
@@ -320,6 +328,8 @@ class SourceCreateRequest:
             field_dict["is_pdf"] = is_pdf
         if display_name is not UNSET:
             field_dict["display_name"] = display_name
+        if gcs_path is not UNSET:
+            field_dict["gcs_path"] = gcs_path
         if focus_instructions is not UNSET:
             field_dict["focus_instructions"] = focus_instructions
         if extract_branding is not UNSET:
@@ -551,6 +561,15 @@ class SourceCreateRequest:
 
         display_name = _parse_display_name(d.pop("display_name", UNSET))
 
+        def _parse_gcs_path(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        gcs_path = _parse_gcs_path(d.pop("gcs_path", UNSET))
+
         def _parse_focus_instructions(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -666,6 +685,7 @@ class SourceCreateRequest:
             add_as_global_source=add_as_global_source,
             is_pdf=is_pdf,
             display_name=display_name,
+            gcs_path=gcs_path,
             focus_instructions=focus_instructions,
             extract_branding=extract_branding,
             extract_images=extract_images,
