@@ -82,6 +82,12 @@ from .query_search_request_repositories_item_type_1 import QuerySearchRequestRep
 from .resolve_source_v2_sources_resolve_get_type_type_0 import ResolveSourceV2SourcesResolveGetTypeType0
 from .search_query import SearchQuery
 from .search_scope import SearchScope
+from .slack_channels_config_request import SlackChannelsConfigRequest
+from .slack_grep_request import SlackGrepRequest
+from .slack_install_request import SlackInstallRequest
+from .slack_o_auth_callback_request import SlackOAuthCallbackRequest
+from .slack_search_filters import SlackSearchFilters
+from .slack_token_request import SlackTokenRequest
 from .source import Source
 from .source_create_request import SourceCreateRequest
 from .source_create_request_type import SourceCreateRequestType
@@ -192,6 +198,12 @@ __all__ = (
     "ResolveSourceV2SourcesResolveGetTypeType0",
     "SearchQuery",
     "SearchScope",
+    "SlackChannelsConfigRequest",
+    "SlackGrepRequest",
+    "SlackInstallRequest",
+    "SlackOAuthCallbackRequest",
+    "SlackSearchFilters",
+    "SlackTokenRequest",
     "Source",
     "SourceCreateRequest",
     "SourceCreateRequestType",

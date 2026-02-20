@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ..models.query_search_request_local_folders_item_type_1 import QuerySearchRequestLocalFoldersItemType1
     from ..models.query_search_request_messages_item import QuerySearchRequestMessagesItem
     from ..models.query_search_request_repositories_item_type_1 import QuerySearchRequestRepositoriesItemType1
+    from ..models.slack_search_filters import SlackSearchFilters
 
 
 T = TypeVar("T", bound="QuerySearchRequest")
@@ -31,6 +32,9 @@ class QuerySearchRequest:
         local_folders (list[QuerySearchRequestLocalFoldersItemType1 | str] | Unset): List of local folders to query. Can
             be strings (display_name or local_folder_id) or dicts with 'local_folder_id' or 'identifier' fields. Local
             folders are private and user-scoped.
+        slack_workspaces (list[str] | Unset): List of Slack installation IDs to include in search
+        slack_filters (None | SlackSearchFilters | Unset): Filters for Slack message results (channels, users, date
+            range)
         category (None | str | Unset): Filter local folder results by classification category (e.g., 'Work', 'Personal')
         local_source_filters (LocalSourceFilters | None | Unset): Filters for local/personal sources (messages,
             contacts, etc.)
@@ -58,6 +62,8 @@ class QuerySearchRequest:
     repositories: list[QuerySearchRequestRepositoriesItemType1 | str] | Unset = UNSET
     data_sources: list[QuerySearchRequestDataSourcesItemType1 | str] | Unset = UNSET
     local_folders: list[QuerySearchRequestLocalFoldersItemType1 | str] | Unset = UNSET
+    slack_workspaces: list[str] | Unset = UNSET
+    slack_filters: None | SlackSearchFilters | Unset = UNSET
     category: None | str | Unset = UNSET
     local_source_filters: LocalSourceFilters | None | Unset = UNSET
     search_mode: str | Unset = "unified"
@@ -79,6 +85,7 @@ class QuerySearchRequest:
         from ..models.query_search_request_data_sources_item_type_1 import QuerySearchRequestDataSourcesItemType1
         from ..models.query_search_request_local_folders_item_type_1 import QuerySearchRequestLocalFoldersItemType1
         from ..models.query_search_request_repositories_item_type_1 import QuerySearchRequestRepositoriesItemType1
+        from ..models.slack_search_filters import SlackSearchFilters
 
         messages = []
         for messages_item_data in self.messages:
@@ -117,6 +124,18 @@ class QuerySearchRequest:
                 else:
                     local_folders_item = local_folders_item_data
                 local_folders.append(local_folders_item)
+
+        slack_workspaces: list[str] | Unset = UNSET
+        if not isinstance(self.slack_workspaces, Unset):
+            slack_workspaces = self.slack_workspaces
+
+        slack_filters: dict[str, Any] | None | Unset
+        if isinstance(self.slack_filters, Unset):
+            slack_filters = UNSET
+        elif isinstance(self.slack_filters, SlackSearchFilters):
+            slack_filters = self.slack_filters.to_dict()
+        else:
+            slack_filters = self.slack_filters
 
         category: None | str | Unset
         if isinstance(self.category, Unset):
@@ -177,6 +196,10 @@ class QuerySearchRequest:
             field_dict["data_sources"] = data_sources
         if local_folders is not UNSET:
             field_dict["local_folders"] = local_folders
+        if slack_workspaces is not UNSET:
+            field_dict["slack_workspaces"] = slack_workspaces
+        if slack_filters is not UNSET:
+            field_dict["slack_filters"] = slack_filters
         if category is not UNSET:
             field_dict["category"] = category
         if local_source_filters is not UNSET:
@@ -215,6 +238,7 @@ class QuerySearchRequest:
         from ..models.query_search_request_local_folders_item_type_1 import QuerySearchRequestLocalFoldersItemType1
         from ..models.query_search_request_messages_item import QuerySearchRequestMessagesItem
         from ..models.query_search_request_repositories_item_type_1 import QuerySearchRequestRepositoriesItemType1
+        from ..models.slack_search_filters import SlackSearchFilters
 
         d = dict(src_dict)
         messages = []
@@ -287,6 +311,25 @@ class QuerySearchRequest:
 
                 local_folders.append(local_folders_item)
 
+        slack_workspaces = cast(list[str], d.pop("slack_workspaces", UNSET))
+
+        def _parse_slack_filters(data: object) -> None | SlackSearchFilters | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                slack_filters_type_0 = SlackSearchFilters.from_dict(data)
+
+                return slack_filters_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SlackSearchFilters | Unset, data)
+
+        slack_filters = _parse_slack_filters(d.pop("slack_filters", UNSET))
+
         def _parse_category(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -358,6 +401,8 @@ class QuerySearchRequest:
             repositories=repositories,
             data_sources=data_sources,
             local_folders=local_folders,
+            slack_workspaces=slack_workspaces,
+            slack_filters=slack_filters,
             category=category,
             local_source_filters=local_source_filters,
             search_mode=search_mode,

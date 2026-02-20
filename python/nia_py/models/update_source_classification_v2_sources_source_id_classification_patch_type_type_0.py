@@ -7,6 +7,7 @@ class UpdateSourceClassificationV2SourcesSourceIdClassificationPatchTypeType0(st
     LOCAL_FOLDER = "local_folder"
     REPOSITORY = "repository"
     RESEARCH_PAPER = "research_paper"
+    SLACK = "slack"
 
     def __str__(self) -> str:
         return str(self.value)

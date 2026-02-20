@@ -51,6 +51,7 @@ class SourceCreateRequest:
         folder_path (None | str | Unset):
         files (list[FileItem] | None | Unset):
         database (DatabaseFileItem | None | Unset):
+        slack_installation_id (None | str | Unset):
     """
 
     type_: SourceCreateRequestType
@@ -83,6 +84,7 @@ class SourceCreateRequest:
     folder_path: None | str | Unset = UNSET
     files: list[FileItem] | None | Unset = UNSET
     database: DatabaseFileItem | None | Unset = UNSET
+    slack_installation_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -281,6 +283,12 @@ class SourceCreateRequest:
         else:
             database = self.database
 
+        slack_installation_id: None | str | Unset
+        if isinstance(self.slack_installation_id, Unset):
+            slack_installation_id = UNSET
+        else:
+            slack_installation_id = self.slack_installation_id
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -346,6 +354,8 @@ class SourceCreateRequest:
             field_dict["files"] = files
         if database is not UNSET:
             field_dict["database"] = database
+        if slack_installation_id is not UNSET:
+            field_dict["slack_installation_id"] = slack_installation_id
 
         return field_dict
 
@@ -663,6 +673,15 @@ class SourceCreateRequest:
 
         database = _parse_database(d.pop("database", UNSET))
 
+        def _parse_slack_installation_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        slack_installation_id = _parse_slack_installation_id(d.pop("slack_installation_id", UNSET))
+
         source_create_request = cls(
             type_=type_,
             repository=repository,
@@ -694,6 +713,7 @@ class SourceCreateRequest:
             folder_path=folder_path,
             files=files,
             database=database,
+            slack_installation_id=slack_installation_id,
         )
 
         source_create_request.additional_properties = d
