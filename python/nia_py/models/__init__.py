@@ -107,6 +107,8 @@ from .subscription_summary import SubscriptionSummary
 from .sync_source_v2_sources_source_id_sync_post_body import SyncSourceV2SourcesSourceIdSyncPostBody
 from .sync_source_v2_sources_source_id_sync_post_type_type_0 import SyncSourceV2SourcesSourceIdSyncPostTypeType0
 from .tracer_request import TracerRequest
+from .tracer_request_mode_type_0 import TracerRequestModeType0
+from .tracer_request_model_type_0 import TracerRequestModelType0
 from .universal_search_request_with_mode import UniversalSearchRequestWithMode
 from .universal_search_request_with_mode_boost_source_types import UniversalSearchRequestWithModeBoostSourceTypes
 from .update_source_classification_v2_sources_source_id_classification_patch_type_type_0 import (
@@ -223,6 +225,8 @@ __all__ = (
     "SyncSourceV2SourcesSourceIdSyncPostBody",
     "SyncSourceV2SourcesSourceIdSyncPostTypeType0",
     "TracerRequest",
+    "TracerRequestModelType0",
+    "TracerRequestModeType0",
     "UniversalSearchRequestWithMode",
     "UniversalSearchRequestWithModeBoostSourceTypes",
     "UpdateSourceClassificationV2SourcesSourceIdClassificationPatchTypeType0",
