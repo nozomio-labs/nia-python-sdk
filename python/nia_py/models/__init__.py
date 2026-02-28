@@ -5,6 +5,8 @@ from .advisor_request_output_format import AdvisorRequestOutputFormat
 from .advisor_response import AdvisorResponse
 from .analyze_response import AnalyzeResponse
 from .body_upload_and_subscribe_v2_dependencies_upload_post import BodyUploadAndSubscribeV2DependenciesUploadPost
+from .bootstrap_key_request import BootstrapKeyRequest
+from .bootstrap_key_response import BootstrapKeyResponse
 from .bulk_delete_item import BulkDeleteItem
 from .bulk_delete_item_type import BulkDeleteItemType
 from .bulk_delete_request import BulkDeleteRequest
@@ -66,6 +68,8 @@ from .lineage_input import LineageInput
 from .lineage_metadata import LineageMetadata
 from .list_sources_v2_sources_get_type_type_0 import ListSourcesV2SourcesGetTypeType0
 from .local_source_filters import LocalSourceFilters
+from .login_key_request import LoginKeyRequest
+from .login_key_response import LoginKeyResponse
 from .mapping_item import MappingItem
 from .nia_references import NiaReferences
 from .oracle_research_request import OracleResearchRequest
@@ -82,6 +86,8 @@ from .query_search_request_repositories_item_type_1 import QuerySearchRequestRep
 from .resolve_source_v2_sources_resolve_get_type_type_0 import ResolveSourceV2SourcesResolveGetTypeType0
 from .search_query import SearchQuery
 from .search_scope import SearchScope
+from .signup_request import SignupRequest
+from .signup_response import SignupResponse
 from .slack_channels_config_request import SlackChannelsConfigRequest
 from .slack_grep_request import SlackGrepRequest
 from .slack_install_request import SlackInstallRequest
@@ -127,6 +133,8 @@ __all__ = (
     "AdvisorResponse",
     "AnalyzeResponse",
     "BodyUploadAndSubscribeV2DependenciesUploadPost",
+    "BootstrapKeyRequest",
+    "BootstrapKeyResponse",
     "BulkDeleteItem",
     "BulkDeleteItemType",
     "BulkDeleteRequest",
@@ -184,6 +192,8 @@ __all__ = (
     "LineageMetadata",
     "ListSourcesV2SourcesGetTypeType0",
     "LocalSourceFilters",
+    "LoginKeyRequest",
+    "LoginKeyResponse",
     "MappingItem",
     "NiaReferences",
     "OracleResearchRequest",
@@ -200,6 +210,8 @@ __all__ = (
     "ResolveSourceV2SourcesResolveGetTypeType0",
     "SearchQuery",
     "SearchScope",
+    "SignupRequest",
+    "SignupResponse",
     "SlackChannelsConfigRequest",
     "SlackGrepRequest",
     "SlackInstallRequest",
