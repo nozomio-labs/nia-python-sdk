@@ -16,7 +16,7 @@ class SourceUploadUrlRequest:
     """
     Attributes:
         filename (str): Original filename (used for storage object naming)
-        content_type (str | Unset): MIME type. Currently only application/pdf is supported. Default: 'application/pdf'.
+        content_type (str | Unset): MIME type for upload (PDF, CSV, TSV, XLS, XLSX) Default: 'application/pdf'.
     """
 
     filename: str

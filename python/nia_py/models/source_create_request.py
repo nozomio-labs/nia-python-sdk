@@ -41,6 +41,7 @@ class SourceCreateRequest:
         llms_txt_strategy (None | str | Unset):
         add_as_global_source (bool | None | Unset):  Default: True.
         is_pdf (bool | None | Unset):
+        is_spreadsheet (bool | None | Unset):
         display_name (None | str | Unset):
         gcs_path (None | str | Unset):
         focus_instructions (None | str | Unset):
@@ -74,6 +75,7 @@ class SourceCreateRequest:
     llms_txt_strategy: None | str | Unset = UNSET
     add_as_global_source: bool | None | Unset = True
     is_pdf: bool | None | Unset = UNSET
+    is_spreadsheet: bool | None | Unset = UNSET
     display_name: None | str | Unset = UNSET
     gcs_path: None | str | Unset = UNSET
     focus_instructions: None | str | Unset = UNSET
@@ -215,6 +217,12 @@ class SourceCreateRequest:
         else:
             is_pdf = self.is_pdf
 
+        is_spreadsheet: bool | None | Unset
+        if isinstance(self.is_spreadsheet, Unset):
+            is_spreadsheet = UNSET
+        else:
+            is_spreadsheet = self.is_spreadsheet
+
         display_name: None | str | Unset
         if isinstance(self.display_name, Unset):
             display_name = UNSET
@@ -334,6 +342,8 @@ class SourceCreateRequest:
             field_dict["add_as_global_source"] = add_as_global_source
         if is_pdf is not UNSET:
             field_dict["is_pdf"] = is_pdf
+        if is_spreadsheet is not UNSET:
+            field_dict["is_spreadsheet"] = is_spreadsheet
         if display_name is not UNSET:
             field_dict["display_name"] = display_name
         if gcs_path is not UNSET:
@@ -562,6 +572,15 @@ class SourceCreateRequest:
 
         is_pdf = _parse_is_pdf(d.pop("is_pdf", UNSET))
 
+        def _parse_is_spreadsheet(data: object) -> bool | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(bool | None | Unset, data)
+
+        is_spreadsheet = _parse_is_spreadsheet(d.pop("is_spreadsheet", UNSET))
+
         def _parse_display_name(data: object) -> None | str | Unset:
             if data is None:
                 return data
@@ -703,6 +722,7 @@ class SourceCreateRequest:
             llms_txt_strategy=llms_txt_strategy,
             add_as_global_source=add_as_global_source,
             is_pdf=is_pdf,
+            is_spreadsheet=is_spreadsheet,
             display_name=display_name,
             gcs_path=gcs_path,
             focus_instructions=focus_instructions,
