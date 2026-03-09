@@ -3,6 +3,7 @@ from enum import Enum
 
 class UpdateSourceV2SourcesSourceIdPatchTypeType0(str, Enum):
     DOCUMENTATION = "documentation"
+    GOOGLE_DRIVE = "google_drive"
     HUGGINGFACE_DATASET = "huggingface_dataset"
     LOCAL_FOLDER = "local_folder"
     REPOSITORY = "repository"

@@ -60,6 +60,11 @@ from .git_hub_search_request import GitHubSearchRequest
 from .global_source_subscribe_request import GlobalSourceSubscribeRequest
 from .global_source_subscribe_request_source_type_type_0 import GlobalSourceSubscribeRequestSourceTypeType0
 from .global_source_subscribe_response import GlobalSourceSubscribeResponse
+from .google_drive_index_request import GoogleDriveIndexRequest
+from .google_drive_install_request import GoogleDriveInstallRequest
+from .google_drive_o_auth_callback_request import GoogleDriveOAuthCallbackRequest
+from .google_drive_selection_request import GoogleDriveSelectionRequest
+from .google_drive_sync_request import GoogleDriveSyncRequest
 from .grep_source_v2_sources_source_id_grep_post_body import GrepSourceV2SourcesSourceIdGrepPostBody
 from .grep_source_v2_sources_source_id_grep_post_type_type_0 import GrepSourceV2SourcesSourceIdGrepPostTypeType0
 from .http_validation_error import HTTPValidationError
@@ -184,6 +189,11 @@ __all__ = (
     "GlobalSourceSubscribeRequest",
     "GlobalSourceSubscribeRequestSourceTypeType0",
     "GlobalSourceSubscribeResponse",
+    "GoogleDriveIndexRequest",
+    "GoogleDriveInstallRequest",
+    "GoogleDriveOAuthCallbackRequest",
+    "GoogleDriveSelectionRequest",
+    "GoogleDriveSyncRequest",
     "GrepSourceV2SourcesSourceIdGrepPostBody",
     "GrepSourceV2SourcesSourceIdGrepPostTypeType0",
     "HTTPValidationError",

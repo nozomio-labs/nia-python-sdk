@@ -3,6 +3,7 @@ from enum import Enum
 
 class GetSourceContentV2SourcesSourceIdContentGetTypeType0(str, Enum):
     DOCUMENTATION = "documentation"
+    GOOGLE_DRIVE = "google_drive"
     HUGGINGFACE_DATASET = "huggingface_dataset"
     LOCAL_FOLDER = "local_folder"
     REPOSITORY = "repository"

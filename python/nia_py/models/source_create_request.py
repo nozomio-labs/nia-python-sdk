@@ -53,6 +53,9 @@ class SourceCreateRequest:
         files (list[FileItem] | None | Unset):
         database (DatabaseFileItem | None | Unset):
         slack_installation_id (None | str | Unset):
+        google_drive_installation_id (None | str | Unset):
+        google_drive_file_ids (list[str] | None | Unset):
+        google_drive_folder_ids (list[str] | None | Unset):
     """
 
     type_: SourceCreateRequestType
@@ -87,6 +90,9 @@ class SourceCreateRequest:
     files: list[FileItem] | None | Unset = UNSET
     database: DatabaseFileItem | None | Unset = UNSET
     slack_installation_id: None | str | Unset = UNSET
+    google_drive_installation_id: None | str | Unset = UNSET
+    google_drive_file_ids: list[str] | None | Unset = UNSET
+    google_drive_folder_ids: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -297,6 +303,30 @@ class SourceCreateRequest:
         else:
             slack_installation_id = self.slack_installation_id
 
+        google_drive_installation_id: None | str | Unset
+        if isinstance(self.google_drive_installation_id, Unset):
+            google_drive_installation_id = UNSET
+        else:
+            google_drive_installation_id = self.google_drive_installation_id
+
+        google_drive_file_ids: list[str] | None | Unset
+        if isinstance(self.google_drive_file_ids, Unset):
+            google_drive_file_ids = UNSET
+        elif isinstance(self.google_drive_file_ids, list):
+            google_drive_file_ids = self.google_drive_file_ids
+
+        else:
+            google_drive_file_ids = self.google_drive_file_ids
+
+        google_drive_folder_ids: list[str] | None | Unset
+        if isinstance(self.google_drive_folder_ids, Unset):
+            google_drive_folder_ids = UNSET
+        elif isinstance(self.google_drive_folder_ids, list):
+            google_drive_folder_ids = self.google_drive_folder_ids
+
+        else:
+            google_drive_folder_ids = self.google_drive_folder_ids
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -366,6 +396,12 @@ class SourceCreateRequest:
             field_dict["database"] = database
         if slack_installation_id is not UNSET:
             field_dict["slack_installation_id"] = slack_installation_id
+        if google_drive_installation_id is not UNSET:
+            field_dict["google_drive_installation_id"] = google_drive_installation_id
+        if google_drive_file_ids is not UNSET:
+            field_dict["google_drive_file_ids"] = google_drive_file_ids
+        if google_drive_folder_ids is not UNSET:
+            field_dict["google_drive_folder_ids"] = google_drive_folder_ids
 
         return field_dict
 
@@ -701,6 +737,49 @@ class SourceCreateRequest:
 
         slack_installation_id = _parse_slack_installation_id(d.pop("slack_installation_id", UNSET))
 
+        def _parse_google_drive_installation_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        google_drive_installation_id = _parse_google_drive_installation_id(d.pop("google_drive_installation_id", UNSET))
+
+        def _parse_google_drive_file_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                google_drive_file_ids_type_0 = cast(list[str], data)
+
+                return google_drive_file_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        google_drive_file_ids = _parse_google_drive_file_ids(d.pop("google_drive_file_ids", UNSET))
+
+        def _parse_google_drive_folder_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                google_drive_folder_ids_type_0 = cast(list[str], data)
+
+                return google_drive_folder_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        google_drive_folder_ids = _parse_google_drive_folder_ids(d.pop("google_drive_folder_ids", UNSET))
+
         source_create_request = cls(
             type_=type_,
             repository=repository,
@@ -734,6 +813,9 @@ class SourceCreateRequest:
             files=files,
             database=database,
             slack_installation_id=slack_installation_id,
+            google_drive_installation_id=google_drive_installation_id,
+            google_drive_file_ids=google_drive_file_ids,
+            google_drive_folder_ids=google_drive_folder_ids,
         )
 
         source_create_request.additional_properties = d
