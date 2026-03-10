@@ -10,6 +10,7 @@ from ...models.get_source_content_v2_sources_source_id_content_get_type_type_0 i
     GetSourceContentV2SourcesSourceIdContentGetTypeType0,
 )
 from ...models.http_validation_error import HTTPValidationError
+from ...models.source_content_response import SourceContentResponse
 from ...types import UNSET, Response, Unset
 
 
@@ -20,6 +21,11 @@ def _get_kwargs(
     path: None | str | Unset = UNSET,
     url_query: None | str | Unset = UNSET,
     branch: None | str | Unset = UNSET,
+    page: int | None | Unset = UNSET,
+    tree_node_id: None | str | Unset = UNSET,
+    line_start: int | None | Unset = UNSET,
+    line_end: int | None | Unset = UNSET,
+    max_length: int | None | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
@@ -54,6 +60,41 @@ def _get_kwargs(
         json_branch = branch
     params["branch"] = json_branch
 
+    json_page: int | None | Unset
+    if isinstance(page, Unset):
+        json_page = UNSET
+    else:
+        json_page = page
+    params["page"] = json_page
+
+    json_tree_node_id: None | str | Unset
+    if isinstance(tree_node_id, Unset):
+        json_tree_node_id = UNSET
+    else:
+        json_tree_node_id = tree_node_id
+    params["tree_node_id"] = json_tree_node_id
+
+    json_line_start: int | None | Unset
+    if isinstance(line_start, Unset):
+        json_line_start = UNSET
+    else:
+        json_line_start = line_start
+    params["line_start"] = json_line_start
+
+    json_line_end: int | None | Unset
+    if isinstance(line_end, Unset):
+        json_line_end = UNSET
+    else:
+        json_line_end = line_end
+    params["line_end"] = json_line_end
+
+    json_max_length: int | None | Unset
+    if isinstance(max_length, Unset):
+        json_max_length = UNSET
+    else:
+        json_max_length = max_length
+    params["max_length"] = json_max_length
+
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: dict[str, Any] = {
@@ -69,9 +110,10 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | HTTPValidationError | None:
+) -> HTTPValidationError | SourceContentResponse | None:
     if response.status_code == 200:
-        response_200 = response.json()
+        response_200 = SourceContentResponse.from_dict(response.json())
+
         return response_200
 
     if response.status_code == 422:
@@ -87,7 +129,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Any | HTTPValidationError]:
+) -> Response[HTTPValidationError | SourceContentResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -104,7 +146,12 @@ def sync_detailed(
     path: None | str | Unset = UNSET,
     url_query: None | str | Unset = UNSET,
     branch: None | str | Unset = UNSET,
-) -> Response[Any | HTTPValidationError]:
+    page: int | None | Unset = UNSET,
+    tree_node_id: None | str | Unset = UNSET,
+    line_start: int | None | Unset = UNSET,
+    line_end: int | None | Unset = UNSET,
+    max_length: int | None | Unset = UNSET,
+) -> Response[HTTPValidationError | SourceContentResponse]:
     """Get Source Content
 
     Args:
@@ -114,13 +161,18 @@ def sync_detailed(
         path (None | str | Unset): Path or virtual path
         url_query (None | str | Unset): Direct URL (documentation)
         branch (None | str | Unset): Repository branch
+        page (int | None | Unset): PDF page number
+        tree_node_id (None | str | Unset): PDF tree node identifier
+        line_start (int | None | Unset): Starting line number
+        line_end (int | None | Unset): Ending line number
+        max_length (int | None | Unset): Maximum content length
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[HTTPValidationError | SourceContentResponse]
     """
 
     kwargs = _get_kwargs(
@@ -129,6 +181,11 @@ def sync_detailed(
         path=path,
         url_query=url_query,
         branch=branch,
+        page=page,
+        tree_node_id=tree_node_id,
+        line_start=line_start,
+        line_end=line_end,
+        max_length=max_length,
     )
 
     response = client.get_httpx_client().request(
@@ -146,7 +203,12 @@ def sync(
     path: None | str | Unset = UNSET,
     url_query: None | str | Unset = UNSET,
     branch: None | str | Unset = UNSET,
-) -> Any | HTTPValidationError | None:
+    page: int | None | Unset = UNSET,
+    tree_node_id: None | str | Unset = UNSET,
+    line_start: int | None | Unset = UNSET,
+    line_end: int | None | Unset = UNSET,
+    max_length: int | None | Unset = UNSET,
+) -> HTTPValidationError | SourceContentResponse | None:
     """Get Source Content
 
     Args:
@@ -156,13 +218,18 @@ def sync(
         path (None | str | Unset): Path or virtual path
         url_query (None | str | Unset): Direct URL (documentation)
         branch (None | str | Unset): Repository branch
+        page (int | None | Unset): PDF page number
+        tree_node_id (None | str | Unset): PDF tree node identifier
+        line_start (int | None | Unset): Starting line number
+        line_end (int | None | Unset): Ending line number
+        max_length (int | None | Unset): Maximum content length
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        HTTPValidationError | SourceContentResponse
     """
 
     return sync_detailed(
@@ -172,6 +239,11 @@ def sync(
         path=path,
         url_query=url_query,
         branch=branch,
+        page=page,
+        tree_node_id=tree_node_id,
+        line_start=line_start,
+        line_end=line_end,
+        max_length=max_length,
     ).parsed
 
 
@@ -183,7 +255,12 @@ async def asyncio_detailed(
     path: None | str | Unset = UNSET,
     url_query: None | str | Unset = UNSET,
     branch: None | str | Unset = UNSET,
-) -> Response[Any | HTTPValidationError]:
+    page: int | None | Unset = UNSET,
+    tree_node_id: None | str | Unset = UNSET,
+    line_start: int | None | Unset = UNSET,
+    line_end: int | None | Unset = UNSET,
+    max_length: int | None | Unset = UNSET,
+) -> Response[HTTPValidationError | SourceContentResponse]:
     """Get Source Content
 
     Args:
@@ -193,13 +270,18 @@ async def asyncio_detailed(
         path (None | str | Unset): Path or virtual path
         url_query (None | str | Unset): Direct URL (documentation)
         branch (None | str | Unset): Repository branch
+        page (int | None | Unset): PDF page number
+        tree_node_id (None | str | Unset): PDF tree node identifier
+        line_start (int | None | Unset): Starting line number
+        line_end (int | None | Unset): Ending line number
+        max_length (int | None | Unset): Maximum content length
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | HTTPValidationError]
+        Response[HTTPValidationError | SourceContentResponse]
     """
 
     kwargs = _get_kwargs(
@@ -208,6 +290,11 @@ async def asyncio_detailed(
         path=path,
         url_query=url_query,
         branch=branch,
+        page=page,
+        tree_node_id=tree_node_id,
+        line_start=line_start,
+        line_end=line_end,
+        max_length=max_length,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -223,7 +310,12 @@ async def asyncio(
     path: None | str | Unset = UNSET,
     url_query: None | str | Unset = UNSET,
     branch: None | str | Unset = UNSET,
-) -> Any | HTTPValidationError | None:
+    page: int | None | Unset = UNSET,
+    tree_node_id: None | str | Unset = UNSET,
+    line_start: int | None | Unset = UNSET,
+    line_end: int | None | Unset = UNSET,
+    max_length: int | None | Unset = UNSET,
+) -> HTTPValidationError | SourceContentResponse | None:
     """Get Source Content
 
     Args:
@@ -233,13 +325,18 @@ async def asyncio(
         path (None | str | Unset): Path or virtual path
         url_query (None | str | Unset): Direct URL (documentation)
         branch (None | str | Unset): Repository branch
+        page (int | None | Unset): PDF page number
+        tree_node_id (None | str | Unset): PDF tree node identifier
+        line_start (int | None | Unset): Starting line number
+        line_end (int | None | Unset): Ending line number
+        max_length (int | None | Unset): Maximum content length
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | HTTPValidationError
+        HTTPValidationError | SourceContentResponse
     """
 
     return (
@@ -250,5 +347,10 @@ async def asyncio(
             path=path,
             url_query=url_query,
             branch=branch,
+            page=page,
+            tree_node_id=tree_node_id,
+            line_start=line_start,
+            line_end=line_end,
+            max_length=max_length,
         )
     ).parsed

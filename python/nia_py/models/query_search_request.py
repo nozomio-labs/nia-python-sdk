@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from ..models.query_search_request_messages_item import QuerySearchRequestMessagesItem
     from ..models.query_search_request_repositories_item_type_1 import QuerySearchRequestRepositoriesItemType1
     from ..models.slack_search_filters import SlackSearchFilters
+    from ..models.source_trust_filter import SourceTrustFilter
 
 
 T = TypeVar("T", bound="QuerySearchRequest")
@@ -38,6 +39,8 @@ class QuerySearchRequest:
         category (None | str | Unset): Filter local folder results by classification category (e.g., 'Work', 'Personal')
         local_source_filters (LocalSourceFilters | None | Unset): Filters for local/personal sources (messages,
             contacts, etc.)
+        source_trust_filter (None | SourceTrustFilter | Unset): Optional trust-aware filtering for curated source
+            results
         search_mode (str | Unset): Search mode: 'repositories', 'sources', or 'unified' Default: 'unified'.
         stream (bool | Unset): Whether to stream the response Default: False.
         include_sources (bool | Unset): Whether to include source texts in the response Default: True.
@@ -66,6 +69,7 @@ class QuerySearchRequest:
     slack_filters: None | SlackSearchFilters | Unset = UNSET
     category: None | str | Unset = UNSET
     local_source_filters: LocalSourceFilters | None | Unset = UNSET
+    source_trust_filter: None | SourceTrustFilter | Unset = UNSET
     search_mode: str | Unset = "unified"
     stream: bool | Unset = False
     include_sources: bool | Unset = True
@@ -86,6 +90,7 @@ class QuerySearchRequest:
         from ..models.query_search_request_local_folders_item_type_1 import QuerySearchRequestLocalFoldersItemType1
         from ..models.query_search_request_repositories_item_type_1 import QuerySearchRequestRepositoriesItemType1
         from ..models.slack_search_filters import SlackSearchFilters
+        from ..models.source_trust_filter import SourceTrustFilter
 
         messages = []
         for messages_item_data in self.messages:
@@ -151,6 +156,14 @@ class QuerySearchRequest:
         else:
             local_source_filters = self.local_source_filters
 
+        source_trust_filter: dict[str, Any] | None | Unset
+        if isinstance(self.source_trust_filter, Unset):
+            source_trust_filter = UNSET
+        elif isinstance(self.source_trust_filter, SourceTrustFilter):
+            source_trust_filter = self.source_trust_filter.to_dict()
+        else:
+            source_trust_filter = self.source_trust_filter
+
         search_mode = self.search_mode
 
         stream = self.stream
@@ -204,6 +217,8 @@ class QuerySearchRequest:
             field_dict["category"] = category
         if local_source_filters is not UNSET:
             field_dict["local_source_filters"] = local_source_filters
+        if source_trust_filter is not UNSET:
+            field_dict["source_trust_filter"] = source_trust_filter
         if search_mode is not UNSET:
             field_dict["search_mode"] = search_mode
         if stream is not UNSET:
@@ -239,6 +254,7 @@ class QuerySearchRequest:
         from ..models.query_search_request_messages_item import QuerySearchRequestMessagesItem
         from ..models.query_search_request_repositories_item_type_1 import QuerySearchRequestRepositoriesItemType1
         from ..models.slack_search_filters import SlackSearchFilters
+        from ..models.source_trust_filter import SourceTrustFilter
 
         d = dict(src_dict)
         messages = []
@@ -356,6 +372,23 @@ class QuerySearchRequest:
 
         local_source_filters = _parse_local_source_filters(d.pop("local_source_filters", UNSET))
 
+        def _parse_source_trust_filter(data: object) -> None | SourceTrustFilter | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                source_trust_filter_type_0 = SourceTrustFilter.from_dict(data)
+
+                return source_trust_filter_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SourceTrustFilter | Unset, data)
+
+        source_trust_filter = _parse_source_trust_filter(d.pop("source_trust_filter", UNSET))
+
         search_mode = d.pop("search_mode", UNSET)
 
         stream = d.pop("stream", UNSET)
@@ -405,6 +438,7 @@ class QuerySearchRequest:
             slack_filters=slack_filters,
             category=category,
             local_source_filters=local_source_filters,
+            source_trust_filter=source_trust_filter,
             search_mode=search_mode,
             stream=stream,
             include_sources=include_sources,

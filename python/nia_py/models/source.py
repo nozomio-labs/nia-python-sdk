@@ -10,6 +10,7 @@ from ..models.source_type import SourceType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.source_curation_summary import SourceCurationSummary
     from ..models.source_metadata import SourceMetadata
 
 
@@ -33,6 +34,7 @@ class Source:
         global_source_id (None | str | Unset): Global source ID if applicable
         global_namespace (None | str | Unset): Global namespace if applicable
         metadata (SourceMetadata | Unset): Type-specific metadata
+        curation (None | SourceCurationSummary | Unset): Trust signals and curated guidance summary
     """
 
     id: str
@@ -47,9 +49,12 @@ class Source:
     global_source_id: None | str | Unset = UNSET
     global_namespace: None | str | Unset = UNSET
     metadata: SourceMetadata | Unset = UNSET
+    curation: None | SourceCurationSummary | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        from ..models.source_curation_summary import SourceCurationSummary
+
         id = self.id
 
         type_ = self.type_.value
@@ -112,6 +117,14 @@ class Source:
         if not isinstance(self.metadata, Unset):
             metadata = self.metadata.to_dict()
 
+        curation: dict[str, Any] | None | Unset
+        if isinstance(self.curation, Unset):
+            curation = UNSET
+        elif isinstance(self.curation, SourceCurationSummary):
+            curation = self.curation.to_dict()
+        else:
+            curation = self.curation
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -140,11 +153,14 @@ class Source:
             field_dict["global_namespace"] = global_namespace
         if metadata is not UNSET:
             field_dict["metadata"] = metadata
+        if curation is not UNSET:
+            field_dict["curation"] = curation
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.source_curation_summary import SourceCurationSummary
         from ..models.source_metadata import SourceMetadata
 
         d = dict(src_dict)
@@ -240,6 +256,23 @@ class Source:
         else:
             metadata = SourceMetadata.from_dict(_metadata)
 
+        def _parse_curation(data: object) -> None | SourceCurationSummary | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, dict):
+                    raise TypeError()
+                curation_type_0 = SourceCurationSummary.from_dict(data)
+
+                return curation_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(None | SourceCurationSummary | Unset, data)
+
+        curation = _parse_curation(d.pop("curation", UNSET))
+
         source = cls(
             id=id,
             type_=type_,
@@ -253,6 +286,7 @@ class Source:
             global_source_id=global_source_id,
             global_namespace=global_namespace,
             metadata=metadata,
+            curation=curation,
         )
 
         source.additional_properties = d

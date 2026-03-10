@@ -34,10 +34,16 @@ from .context_semantic_search_suggestions import ContextSemanticSearchSuggestion
 from .context_share_response import ContextShareResponse
 from .context_share_response_memory_type import ContextShareResponseMemoryType
 from .context_share_response_metadata import ContextShareResponseMetadata
+from .create_source_annotation_v2_sources_source_id_annotations_post_type_type_0 import (
+    CreateSourceAnnotationV2SourcesSourceIdAnnotationsPostTypeType0,
+)
 from .daily_usage_1m_response import DailyUsage1MResponse
 from .database_file_item import DatabaseFileItem
 from .deep_research_request_with_mode import DeepResearchRequestWithMode
 from .delete_response import DeleteResponse
+from .delete_source_annotation_v2_sources_source_id_annotations_annotation_id_delete_type_type_0 import (
+    DeleteSourceAnnotationV2SourcesSourceIdAnnotationsAnnotationIdDeleteTypeType0,
+)
 from .delete_source_v2_sources_source_id_delete_type_type_0 import DeleteSourceV2SourcesSourceIdDeleteTypeType0
 from .dependency_analyze_request import DependencyAnalyzeRequest
 from .dependency_analyze_request_manifest_type_type_0 import DependencyAnalyzeRequestManifestTypeType0
@@ -51,6 +57,9 @@ from .get_source_classification_v2_sources_source_id_classification_get_type_typ
 )
 from .get_source_content_v2_sources_source_id_content_get_type_type_0 import (
     GetSourceContentV2SourcesSourceIdContentGetTypeType0,
+)
+from .get_source_curation_v2_sources_source_id_curation_get_type_type_0 import (
+    GetSourceCurationV2SourcesSourceIdCurationGetTypeType0,
 )
 from .get_source_tree_v2_sources_source_id_tree_get_type_type_0 import GetSourceTreeV2SourcesSourceIdTreeGetTypeType0
 from .get_source_v2_sources_source_id_get_type_type_0 import GetSourceV2SourcesSourceIdGetTypeType0
@@ -71,6 +80,9 @@ from .http_validation_error import HTTPValidationError
 from .indexed_resource import IndexedResource
 from .lineage_input import LineageInput
 from .lineage_metadata import LineageMetadata
+from .list_source_annotations_v2_sources_source_id_annotations_get_type_type_0 import (
+    ListSourceAnnotationsV2SourcesSourceIdAnnotationsGetTypeType0,
+)
 from .list_sources_v2_sources_get_type_type_0 import ListSourcesV2SourcesGetTypeType0
 from .local_source_filters import LocalSourceFilters
 from .login_key_request import LoginKeyRequest
@@ -100,13 +112,35 @@ from .slack_o_auth_callback_request import SlackOAuthCallbackRequest
 from .slack_search_filters import SlackSearchFilters
 from .slack_token_request import SlackTokenRequest
 from .source import Source
+from .source_annotation import SourceAnnotation
+from .source_annotation_create_request import SourceAnnotationCreateRequest
+from .source_annotation_create_request_kind import SourceAnnotationCreateRequestKind
+from .source_annotation_kind import SourceAnnotationKind
+from .source_annotation_update_request import SourceAnnotationUpdateRequest
+from .source_annotation_update_request_kind_type_0 import SourceAnnotationUpdateRequestKindType0
+from .source_content_response import SourceContentResponse
+from .source_content_response_metadata import SourceContentResponseMetadata
 from .source_create_request import SourceCreateRequest
 from .source_create_request_type import SourceCreateRequestType
+from .source_curated_overlay import SourceCuratedOverlay
+from .source_curated_overlay_kind import SourceCuratedOverlayKind
+from .source_curation_response import SourceCurationResponse
+from .source_curation_response_source_type import SourceCurationResponseSourceType
+from .source_curation_summary import SourceCurationSummary
+from .source_curation_update_request import SourceCurationUpdateRequest
+from .source_curation_update_request_overlay_kind_type_0 import SourceCurationUpdateRequestOverlayKindType0
+from .source_curation_update_request_trust_level_type_0 import SourceCurationUpdateRequestTrustLevelType0
 from .source_delete_response import SourceDeleteResponse
 from .source_list_response import SourceListResponse
 from .source_metadata import SourceMetadata
 from .source_resolve_response import SourceResolveResponse
 from .source_resolve_response_type import SourceResolveResponseType
+from .source_trust_filter import SourceTrustFilter
+from .source_trust_filter_minimum_trust_tier_type_0 import SourceTrustFilterMinimumTrustTierType0
+from .source_trust_signals import SourceTrustSignals
+from .source_trust_signals_scope import SourceTrustSignalsScope
+from .source_trust_signals_trust_level import SourceTrustSignalsTrustLevel
+from .source_trust_signals_trust_tier import SourceTrustSignalsTrustTier
 from .source_type import SourceType
 from .source_update_request import SourceUpdateRequest
 from .source_upload_url_request import SourceUploadUrlRequest
@@ -122,8 +156,14 @@ from .tracer_request_mode_type_0 import TracerRequestModeType0
 from .tracer_request_model_type_0 import TracerRequestModelType0
 from .universal_search_request_with_mode import UniversalSearchRequestWithMode
 from .universal_search_request_with_mode_boost_source_types import UniversalSearchRequestWithModeBoostSourceTypes
+from .update_source_annotation_v2_sources_source_id_annotations_annotation_id_patch_type_type_0 import (
+    UpdateSourceAnnotationV2SourcesSourceIdAnnotationsAnnotationIdPatchTypeType0,
+)
 from .update_source_classification_v2_sources_source_id_classification_patch_type_type_0 import (
     UpdateSourceClassificationV2SourcesSourceIdClassificationPatchTypeType0,
+)
+from .update_source_curation_v2_sources_source_id_curation_put_type_type_0 import (
+    UpdateSourceCurationV2SourcesSourceIdCurationPutTypeType0,
 )
 from .update_source_v2_sources_source_id_patch_type_type_0 import UpdateSourceV2SourcesSourceIdPatchTypeType0
 from .usage_summary_response import UsageSummaryResponse
@@ -167,10 +207,12 @@ __all__ = (
     "ContextShareResponse",
     "ContextShareResponseMemoryType",
     "ContextShareResponseMetadata",
+    "CreateSourceAnnotationV2SourcesSourceIdAnnotationsPostTypeType0",
     "DailyUsage1MResponse",
     "DatabaseFileItem",
     "DeepResearchRequestWithMode",
     "DeleteResponse",
+    "DeleteSourceAnnotationV2SourcesSourceIdAnnotationsAnnotationIdDeleteTypeType0",
     "DeleteSourceV2SourcesSourceIdDeleteTypeType0",
     "DependencyAnalyzeRequest",
     "DependencyAnalyzeRequestManifestTypeType0",
@@ -181,6 +223,7 @@ __all__ = (
     "FileItem",
     "GetSourceClassificationV2SourcesSourceIdClassificationGetTypeType0",
     "GetSourceContentV2SourcesSourceIdContentGetTypeType0",
+    "GetSourceCurationV2SourcesSourceIdCurationGetTypeType0",
     "GetSourceTreeV2SourcesSourceIdTreeGetTypeType0",
     "GetSourceV2SourcesSourceIdGetTypeType0",
     "GitHubGlobRequest",
@@ -200,6 +243,7 @@ __all__ = (
     "IndexedResource",
     "LineageInput",
     "LineageMetadata",
+    "ListSourceAnnotationsV2SourcesSourceIdAnnotationsGetTypeType0",
     "ListSourcesV2SourcesGetTypeType0",
     "LocalSourceFilters",
     "LoginKeyRequest",
@@ -229,13 +273,35 @@ __all__ = (
     "SlackSearchFilters",
     "SlackTokenRequest",
     "Source",
+    "SourceAnnotation",
+    "SourceAnnotationCreateRequest",
+    "SourceAnnotationCreateRequestKind",
+    "SourceAnnotationKind",
+    "SourceAnnotationUpdateRequest",
+    "SourceAnnotationUpdateRequestKindType0",
+    "SourceContentResponse",
+    "SourceContentResponseMetadata",
     "SourceCreateRequest",
     "SourceCreateRequestType",
+    "SourceCuratedOverlay",
+    "SourceCuratedOverlayKind",
+    "SourceCurationResponse",
+    "SourceCurationResponseSourceType",
+    "SourceCurationSummary",
+    "SourceCurationUpdateRequest",
+    "SourceCurationUpdateRequestOverlayKindType0",
+    "SourceCurationUpdateRequestTrustLevelType0",
     "SourceDeleteResponse",
     "SourceListResponse",
     "SourceMetadata",
     "SourceResolveResponse",
     "SourceResolveResponseType",
+    "SourceTrustFilter",
+    "SourceTrustFilterMinimumTrustTierType0",
+    "SourceTrustSignals",
+    "SourceTrustSignalsScope",
+    "SourceTrustSignalsTrustLevel",
+    "SourceTrustSignalsTrustTier",
     "SourceType",
     "SourceUpdateRequest",
     "SourceUploadUrlRequest",
@@ -251,7 +317,9 @@ __all__ = (
     "TracerRequestModeType0",
     "UniversalSearchRequestWithMode",
     "UniversalSearchRequestWithModeBoostSourceTypes",
+    "UpdateSourceAnnotationV2SourcesSourceIdAnnotationsAnnotationIdPatchTypeType0",
     "UpdateSourceClassificationV2SourcesSourceIdClassificationPatchTypeType0",
+    "UpdateSourceCurationV2SourcesSourceIdCurationPutTypeType0",
     "UpdateSourceV2SourcesSourceIdPatchTypeType0",
     "UsageSummaryResponse",
     "UsageSummaryResponseUsage",
