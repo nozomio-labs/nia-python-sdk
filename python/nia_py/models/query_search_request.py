@@ -58,6 +58,8 @@ class QuerySearchRequest:
         bypass_semantic_cache (bool | Unset): Skip semantic cache (L2) lookup Default: False.
         include_follow_ups (bool | Unset): Generate follow-up questions (adds ~500-1000ms LLM latency). Disabled by
             default for speed. Default: False.
+        e2e_session_id (None | str | Unset): Active E2E decrypt session ID. When provided, encrypted local folder
+            results are decrypted through the desktop bridge before synthesis.
         mode (Literal['query'] | Unset): Search mode discriminator Default: 'query'.
     """
 
@@ -81,6 +83,7 @@ class QuerySearchRequest:
     semantic_cache_threshold: float | Unset = 0.92
     bypass_semantic_cache: bool | Unset = False
     include_follow_ups: bool | Unset = False
+    e2e_session_id: None | str | Unset = UNSET
     mode: Literal["query"] | Unset = "query"
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -194,6 +197,12 @@ class QuerySearchRequest:
 
         include_follow_ups = self.include_follow_ups
 
+        e2e_session_id: None | str | Unset
+        if isinstance(self.e2e_session_id, Unset):
+            e2e_session_id = UNSET
+        else:
+            e2e_session_id = self.e2e_session_id
+
         mode = self.mode
 
         field_dict: dict[str, Any] = {}
@@ -241,6 +250,8 @@ class QuerySearchRequest:
             field_dict["bypass_semantic_cache"] = bypass_semantic_cache
         if include_follow_ups is not UNSET:
             field_dict["include_follow_ups"] = include_follow_ups
+        if e2e_session_id is not UNSET:
+            field_dict["e2e_session_id"] = e2e_session_id
         if mode is not UNSET:
             field_dict["mode"] = mode
 
@@ -425,6 +436,15 @@ class QuerySearchRequest:
 
         include_follow_ups = d.pop("include_follow_ups", UNSET)
 
+        def _parse_e2e_session_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        e2e_session_id = _parse_e2e_session_id(d.pop("e2e_session_id", UNSET))
+
         mode = cast(Literal["query"] | Unset, d.pop("mode", UNSET))
         if mode != "query" and not isinstance(mode, Unset):
             raise ValueError(f"mode must match const 'query', got '{mode}'")
@@ -450,6 +470,7 @@ class QuerySearchRequest:
             semantic_cache_threshold=semantic_cache_threshold,
             bypass_semantic_cache=bypass_semantic_cache,
             include_follow_ups=include_follow_ups,
+            e2e_session_id=e2e_session_id,
             mode=mode,
         )
 

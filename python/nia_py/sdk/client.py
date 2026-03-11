@@ -22,6 +22,7 @@ from ..api.v2_api import (
     unified_search_v2_v2_search_post,
 )
 from ..client import AuthenticatedClient
+from ..daemon import DaemonClient
 from ..models.deep_research_request_with_mode import DeepResearchRequestWithMode
 from ..models.oracle_research_request import OracleResearchRequest
 from ..models.query_search_request import QuerySearchRequest
@@ -239,4 +240,9 @@ class NiaSDK:
         )
         self.search = SearchClient(self._client, retry_config)
         self.sources = SourcesClient(self._client, retry_config)
+        self.daemon = DaemonClient(
+            self._client,
+            max_retries=max_retries,
+            initial_backoff_seconds=initial_backoff_seconds,
+        )
         self.oracle = OracleClient(self._client, retry_config)
