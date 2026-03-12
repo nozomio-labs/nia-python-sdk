@@ -142,9 +142,11 @@ from .source_trust_signals_scope import SourceTrustSignalsScope
 from .source_trust_signals_trust_level import SourceTrustSignalsTrustLevel
 from .source_trust_signals_trust_tier import SourceTrustSignalsTrustTier
 from .source_type import SourceType
+from .source_type_summary import SourceTypeSummary
 from .source_update_request import SourceUpdateRequest
 from .source_upload_url_request import SourceUploadUrlRequest
 from .source_upload_url_response import SourceUploadUrlResponse
+from .sources_summary_response import SourcesSummaryResponse
 from .subscribe_response import SubscribeResponse
 from .subscription_result_item import SubscriptionResultItem
 from .subscription_results import SubscriptionResults
@@ -296,6 +298,7 @@ __all__ = (
     "SourceMetadata",
     "SourceResolveResponse",
     "SourceResolveResponseType",
+    "SourcesSummaryResponse",
     "SourceTrustFilter",
     "SourceTrustFilterMinimumTrustTierType0",
     "SourceTrustSignals",
@@ -303,6 +306,7 @@ __all__ = (
     "SourceTrustSignalsTrustLevel",
     "SourceTrustSignalsTrustTier",
     "SourceType",
+    "SourceTypeSummary",
     "SourceUpdateRequest",
     "SourceUploadUrlRequest",
     "SourceUploadUrlResponse",
