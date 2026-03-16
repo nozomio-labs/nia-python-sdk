@@ -24,6 +24,7 @@ class SourcesSummaryResponse:
         local_folders (SourceTypeSummary):
         slack (SourceTypeSummary):
         google_drive (SourceTypeSummary):
+        x (SourceTypeSummary):
     """
 
     repositories: SourceTypeSummary
@@ -33,6 +34,7 @@ class SourcesSummaryResponse:
     local_folders: SourceTypeSummary
     slack: SourceTypeSummary
     google_drive: SourceTypeSummary
+    x: SourceTypeSummary
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -50,6 +52,8 @@ class SourcesSummaryResponse:
 
         google_drive = self.google_drive.to_dict()
 
+        x = self.x.to_dict()
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -61,6 +65,7 @@ class SourcesSummaryResponse:
                 "local_folders": local_folders,
                 "slack": slack,
                 "google_drive": google_drive,
+                "x": x,
             }
         )
 
@@ -85,6 +90,8 @@ class SourcesSummaryResponse:
 
         google_drive = SourceTypeSummary.from_dict(d.pop("google_drive"))
 
+        x = SourceTypeSummary.from_dict(d.pop("x"))
+
         sources_summary_response = cls(
             repositories=repositories,
             documentation=documentation,
@@ -93,6 +100,7 @@ class SourcesSummaryResponse:
             local_folders=local_folders,
             slack=slack,
             google_drive=google_drive,
+            x=x,
         )
 
         sources_summary_response.additional_properties = d

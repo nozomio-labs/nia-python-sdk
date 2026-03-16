@@ -173,6 +173,7 @@ from .usage_summary_response_usage import UsageSummaryResponseUsage
 from .usage_summary_usage_entry import UsageSummaryUsageEntry
 from .validation_error import ValidationError
 from .web_search_request_with_mode import WebSearchRequestWithMode
+from .x_installation_request import XInstallationRequest
 
 __all__ = (
     "AdvisorRequest",
@@ -330,4 +331,5 @@ __all__ = (
     "UsageSummaryUsageEntry",
     "ValidationError",
     "WebSearchRequestWithMode",
+    "XInstallationRequest",
 )
