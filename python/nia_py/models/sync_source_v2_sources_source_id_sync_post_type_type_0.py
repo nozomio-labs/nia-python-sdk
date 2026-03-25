@@ -2,6 +2,7 @@ from enum import Enum
 
 
 class SyncSourceV2SourcesSourceIdSyncPostTypeType0(str, Enum):
+    CONNECTOR = "connector"
     DOCUMENTATION = "documentation"
     GOOGLE_DRIVE = "google_drive"
     HUGGINGFACE_DATASET = "huggingface_dataset"

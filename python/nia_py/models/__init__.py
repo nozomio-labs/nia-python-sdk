@@ -51,6 +51,16 @@ from .dependency_item import DependencyItem
 from .dependency_subscribe_request import DependencySubscribeRequest
 from .dependency_subscribe_request_manifest_type_type_0 import DependencySubscribeRequestManifestTypeType0
 from .edited_file import EditedFile
+from .engineering_extract_request import EngineeringExtractRequest
+from .engineering_extract_response import EngineeringExtractResponse
+from .engineering_extract_response_chat_messages_item import EngineeringExtractResponseChatMessagesItem
+from .engineering_extract_response_result_type_0 import EngineeringExtractResponseResultType0
+from .engineering_query_request import EngineeringQueryRequest
+from .engineering_query_request_conversation_history_item import EngineeringQueryRequestConversationHistoryItem
+from .extract_request import ExtractRequest
+from .extract_request_json_schema import ExtractRequestJsonSchema
+from .extract_response import ExtractResponse
+from .extract_response_records_item import ExtractResponseRecordsItem
 from .file_item import FileItem
 from .get_source_classification_v2_sources_source_id_classification_get_type_type_0 import (
     GetSourceClassificationV2SourcesSourceIdClassificationGetTypeType0,
@@ -223,6 +233,16 @@ __all__ = (
     "DependencySubscribeRequest",
     "DependencySubscribeRequestManifestTypeType0",
     "EditedFile",
+    "EngineeringExtractRequest",
+    "EngineeringExtractResponse",
+    "EngineeringExtractResponseChatMessagesItem",
+    "EngineeringExtractResponseResultType0",
+    "EngineeringQueryRequest",
+    "EngineeringQueryRequestConversationHistoryItem",
+    "ExtractRequest",
+    "ExtractRequestJsonSchema",
+    "ExtractResponse",
+    "ExtractResponseRecordsItem",
     "FileItem",
     "GetSourceClassificationV2SourcesSourceIdClassificationGetTypeType0",
     "GetSourceContentV2SourcesSourceIdContentGetTypeType0",
