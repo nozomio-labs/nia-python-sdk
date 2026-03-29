@@ -50,6 +50,12 @@ from .dependency_analyze_request_manifest_type_type_0 import DependencyAnalyzeRe
 from .dependency_item import DependencyItem
 from .dependency_subscribe_request import DependencySubscribeRequest
 from .dependency_subscribe_request_manifest_type_type_0 import DependencySubscribeRequestManifestTypeType0
+from .document_citation import DocumentCitation
+from .document_query_request import DocumentQueryRequest
+from .document_query_request_json_schema_type_0 import DocumentQueryRequestJsonSchemaType0
+from .document_query_response import DocumentQueryResponse
+from .document_query_response_structured_output_type_0 import DocumentQueryResponseStructuredOutputType0
+from .document_query_response_usage_type_0 import DocumentQueryResponseUsageType0
 from .edited_file import EditedFile
 from .engineering_extract_request import EngineeringExtractRequest
 from .engineering_extract_response import EngineeringExtractResponse
@@ -238,6 +244,12 @@ __all__ = (
     "DependencyItem",
     "DependencySubscribeRequest",
     "DependencySubscribeRequestManifestTypeType0",
+    "DocumentCitation",
+    "DocumentQueryRequest",
+    "DocumentQueryRequestJsonSchemaType0",
+    "DocumentQueryResponse",
+    "DocumentQueryResponseStructuredOutputType0",
+    "DocumentQueryResponseUsageType0",
     "EditedFile",
     "EngineeringExtractRequest",
     "EngineeringExtractResponse",
