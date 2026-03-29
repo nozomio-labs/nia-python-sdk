@@ -84,6 +84,7 @@ from .google_drive_install_request import GoogleDriveInstallRequest
 from .google_drive_o_auth_callback_request import GoogleDriveOAuthCallbackRequest
 from .google_drive_selection_request import GoogleDriveSelectionRequest
 from .google_drive_sync_request import GoogleDriveSyncRequest
+from .grep_request_body import GrepRequestBody
 from .grep_source_v2_sources_source_id_grep_post_body import GrepSourceV2SourcesSourceIdGrepPostBody
 from .grep_source_v2_sources_source_id_grep_post_type_type_0 import GrepSourceV2SourcesSourceIdGrepPostTypeType0
 from .http_validation_error import HTTPValidationError
@@ -98,6 +99,8 @@ from .local_source_filters import LocalSourceFilters
 from .login_key_request import LoginKeyRequest
 from .login_key_response import LoginKeyResponse
 from .mapping_item import MappingItem
+from .mkdir_body import MkdirBody
+from .move_body import MoveBody
 from .nia_references import NiaReferences
 from .oracle_research_request import OracleResearchRequest
 from .oracle_session_chat_request import OracleSessionChatRequest
@@ -183,6 +186,9 @@ from .usage_summary_response_usage import UsageSummaryResponseUsage
 from .usage_summary_usage_entry import UsageSummaryUsageEntry
 from .validation_error import ValidationError
 from .web_search_request_with_mode import WebSearchRequestWithMode
+from .write_batch_body import WriteBatchBody
+from .write_file_body import WriteFileBody
+from .write_file_body_headers_type_0 import WriteFileBodyHeadersType0
 from .x_installation_request import XInstallationRequest
 
 __all__ = (
@@ -260,6 +266,7 @@ __all__ = (
     "GoogleDriveOAuthCallbackRequest",
     "GoogleDriveSelectionRequest",
     "GoogleDriveSyncRequest",
+    "GrepRequestBody",
     "GrepSourceV2SourcesSourceIdGrepPostBody",
     "GrepSourceV2SourcesSourceIdGrepPostTypeType0",
     "HTTPValidationError",
@@ -272,6 +279,8 @@ __all__ = (
     "LoginKeyRequest",
     "LoginKeyResponse",
     "MappingItem",
+    "MkdirBody",
+    "MoveBody",
     "NiaReferences",
     "OracleResearchRequest",
     "OracleSessionChatRequest",
@@ -351,5 +360,8 @@ __all__ = (
     "UsageSummaryUsageEntry",
     "ValidationError",
     "WebSearchRequestWithMode",
+    "WriteBatchBody",
+    "WriteFileBody",
+    "WriteFileBodyHeadersType0",
     "XInstallationRequest",
 )
