@@ -50,6 +50,9 @@ from .dependency_analyze_request_manifest_type_type_0 import DependencyAnalyzeRe
 from .dependency_item import DependencyItem
 from .dependency_subscribe_request import DependencySubscribeRequest
 from .dependency_subscribe_request_manifest_type_type_0 import DependencySubscribeRequestManifestTypeType0
+from .detect_request import DetectRequest
+from .detect_response import DetectResponse
+from .detect_response_result_type_0 import DetectResponseResultType0
 from .document_citation import DocumentCitation
 from .document_query_request import DocumentQueryRequest
 from .document_query_request_json_schema_type_0 import DocumentQueryRequestJsonSchemaType0
@@ -244,6 +247,9 @@ __all__ = (
     "DependencyItem",
     "DependencySubscribeRequest",
     "DependencySubscribeRequestManifestTypeType0",
+    "DetectRequest",
+    "DetectResponse",
+    "DetectResponseResultType0",
     "DocumentCitation",
     "DocumentQueryRequest",
     "DocumentQueryRequestJsonSchemaType0",
