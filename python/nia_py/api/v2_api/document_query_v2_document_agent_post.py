@@ -65,11 +65,11 @@ def sync_detailed(
     client: AuthenticatedClient | Client,
     body: DocumentQueryRequest,
 ) -> Response[DocumentQueryResponse | HTTPValidationError]:
-    """Query a document with an AI agent
+    """Query document(s) with an AI agent
 
-     Run the full document agent against an indexed PDF or document. The agent uses tools (search, read
-    sections, read pages) to research the document and produce a comprehensive answer with citations.
-    Supports optional structured output via json_schema.
+     Run the full document agent against one or more indexed PDFs or documents. The agent uses tools
+    (search, read sections, read pages) to research the document(s) and produce a comprehensive answer
+    with citations. Supports optional structured output via json_schema.
 
     Args:
         body (DocumentQueryRequest): Request for the v2 document/agent endpoint.
@@ -98,11 +98,11 @@ def sync(
     client: AuthenticatedClient | Client,
     body: DocumentQueryRequest,
 ) -> DocumentQueryResponse | HTTPValidationError | None:
-    """Query a document with an AI agent
+    """Query document(s) with an AI agent
 
-     Run the full document agent against an indexed PDF or document. The agent uses tools (search, read
-    sections, read pages) to research the document and produce a comprehensive answer with citations.
-    Supports optional structured output via json_schema.
+     Run the full document agent against one or more indexed PDFs or documents. The agent uses tools
+    (search, read sections, read pages) to research the document(s) and produce a comprehensive answer
+    with citations. Supports optional structured output via json_schema.
 
     Args:
         body (DocumentQueryRequest): Request for the v2 document/agent endpoint.
@@ -126,11 +126,11 @@ async def asyncio_detailed(
     client: AuthenticatedClient | Client,
     body: DocumentQueryRequest,
 ) -> Response[DocumentQueryResponse | HTTPValidationError]:
-    """Query a document with an AI agent
+    """Query document(s) with an AI agent
 
-     Run the full document agent against an indexed PDF or document. The agent uses tools (search, read
-    sections, read pages) to research the document and produce a comprehensive answer with citations.
-    Supports optional structured output via json_schema.
+     Run the full document agent against one or more indexed PDFs or documents. The agent uses tools
+    (search, read sections, read pages) to research the document(s) and produce a comprehensive answer
+    with citations. Supports optional structured output via json_schema.
 
     Args:
         body (DocumentQueryRequest): Request for the v2 document/agent endpoint.
@@ -157,11 +157,11 @@ async def asyncio(
     client: AuthenticatedClient | Client,
     body: DocumentQueryRequest,
 ) -> DocumentQueryResponse | HTTPValidationError | None:
-    """Query a document with an AI agent
+    """Query document(s) with an AI agent
 
-     Run the full document agent against an indexed PDF or document. The agent uses tools (search, read
-    sections, read pages) to research the document and produce a comprehensive answer with citations.
-    Supports optional structured output via json_schema.
+     Run the full document agent against one or more indexed PDFs or documents. The agent uses tools
+    (search, read sections, read pages) to research the document(s) and produce a comprehensive answer
+    with citations. Supports optional structured output via json_schema.
 
     Args:
         body (DocumentQueryRequest): Request for the v2 document/agent endpoint.

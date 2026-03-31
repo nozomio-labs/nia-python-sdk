@@ -22,6 +22,8 @@ class DocumentCitation:
         section_id (None | str | Unset):
         section_title (None | str | Unset):
         section_path (list[str] | None | Unset):
+        source_id (None | str | Unset):
+        source_name (None | str | Unset):
     """
 
     content: str
@@ -30,6 +32,8 @@ class DocumentCitation:
     section_id: None | str | Unset = UNSET
     section_title: None | str | Unset = UNSET
     section_path: list[str] | None | Unset = UNSET
+    source_id: None | str | Unset = UNSET
+    source_name: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -64,6 +68,18 @@ class DocumentCitation:
         else:
             section_path = self.section_path
 
+        source_id: None | str | Unset
+        if isinstance(self.source_id, Unset):
+            source_id = UNSET
+        else:
+            source_id = self.source_id
+
+        source_name: None | str | Unset
+        if isinstance(self.source_name, Unset):
+            source_name = UNSET
+        else:
+            source_name = self.source_name
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -80,6 +96,10 @@ class DocumentCitation:
             field_dict["section_title"] = section_title
         if section_path is not UNSET:
             field_dict["section_path"] = section_path
+        if source_id is not UNSET:
+            field_dict["source_id"] = source_id
+        if source_name is not UNSET:
+            field_dict["source_name"] = source_name
 
         return field_dict
 
@@ -134,6 +154,24 @@ class DocumentCitation:
 
         section_path = _parse_section_path(d.pop("section_path", UNSET))
 
+        def _parse_source_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        source_id = _parse_source_id(d.pop("source_id", UNSET))
+
+        def _parse_source_name(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        source_name = _parse_source_name(d.pop("source_name", UNSET))
+
         document_citation = cls(
             content=content,
             tool_source=tool_source,
@@ -141,6 +179,8 @@ class DocumentCitation:
             section_id=section_id,
             section_title=section_title,
             section_path=section_path,
+            source_id=source_id,
+            source_name=source_name,
         )
 
         document_citation.additional_properties = d

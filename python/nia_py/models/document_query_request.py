@@ -20,8 +20,9 @@ class DocumentQueryRequest:
     """Request for the v2 document/agent endpoint.
 
     Attributes:
-        source_id (str): Data source ID of the indexed document
-        query (str): Question to ask about the document
+        query (str): Question to ask about the document(s)
+        source_id (None | str | Unset): Data source ID of a single indexed document
+        source_ids (list[str] | None | Unset): List of data source IDs for multi-document queries (max 10)
         json_schema (DocumentQueryRequestJsonSchemaType0 | None | Unset): JSON Schema for structured output
         model (str | Unset): Model to use (claude-opus-4-6-1m, claude-opus-4-6, claude-sonnet-4-5-20250929, etc.)
             Default: 'claude-opus-4-6-1m'.
@@ -31,8 +32,9 @@ class DocumentQueryRequest:
         stream (bool | Unset): Stream response as SSE events Default: False.
     """
 
-    source_id: str
     query: str
+    source_id: None | str | Unset = UNSET
+    source_ids: list[str] | None | Unset = UNSET
     json_schema: DocumentQueryRequestJsonSchemaType0 | None | Unset = UNSET
     model: str | Unset = "claude-opus-4-6-1m"
     thinking_enabled: bool | Unset = True
@@ -43,9 +45,22 @@ class DocumentQueryRequest:
     def to_dict(self) -> dict[str, Any]:
         from ..models.document_query_request_json_schema_type_0 import DocumentQueryRequestJsonSchemaType0
 
-        source_id = self.source_id
-
         query = self.query
+
+        source_id: None | str | Unset
+        if isinstance(self.source_id, Unset):
+            source_id = UNSET
+        else:
+            source_id = self.source_id
+
+        source_ids: list[str] | None | Unset
+        if isinstance(self.source_ids, Unset):
+            source_ids = UNSET
+        elif isinstance(self.source_ids, list):
+            source_ids = self.source_ids
+
+        else:
+            source_ids = self.source_ids
 
         json_schema: dict[str, Any] | None | Unset
         if isinstance(self.json_schema, Unset):
@@ -67,10 +82,13 @@ class DocumentQueryRequest:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "source_id": source_id,
                 "query": query,
             }
         )
+        if source_id is not UNSET:
+            field_dict["source_id"] = source_id
+        if source_ids is not UNSET:
+            field_dict["source_ids"] = source_ids
         if json_schema is not UNSET:
             field_dict["json_schema"] = json_schema
         if model is not UNSET:
@@ -89,9 +107,33 @@ class DocumentQueryRequest:
         from ..models.document_query_request_json_schema_type_0 import DocumentQueryRequestJsonSchemaType0
 
         d = dict(src_dict)
-        source_id = d.pop("source_id")
-
         query = d.pop("query")
+
+        def _parse_source_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        source_id = _parse_source_id(d.pop("source_id", UNSET))
+
+        def _parse_source_ids(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                source_ids_type_0 = cast(list[str], data)
+
+                return source_ids_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        source_ids = _parse_source_ids(d.pop("source_ids", UNSET))
 
         def _parse_json_schema(data: object) -> DocumentQueryRequestJsonSchemaType0 | None | Unset:
             if data is None:
@@ -119,8 +161,9 @@ class DocumentQueryRequest:
         stream = d.pop("stream", UNSET)
 
         document_query_request = cls(
-            source_id=source_id,
             query=query,
+            source_id=source_id,
+            source_ids=source_ids,
             json_schema=json_schema,
             model=model,
             thinking_enabled=thinking_enabled,
