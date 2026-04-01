@@ -6,20 +6,20 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.http_validation_error import HTTPValidationError
-from ...models.signup_request import SignupRequest
-from ...models.signup_response import SignupResponse
+from ...models.login_request import LoginRequest
+from ...models.login_response import LoginResponse
 from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: SignupRequest,
+    body: LoginRequest,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": "/auth/signup",
+        "url": "/auth/login",
     }
 
     _kwargs["json"] = body.to_dict()
@@ -32,9 +32,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> HTTPValidationError | SignupResponse | None:
+) -> HTTPValidationError | LoginResponse | None:
     if response.status_code == 200:
-        response_200 = SignupResponse.from_dict(response.json())
+        response_200 = LoginResponse.from_dict(response.json())
 
         return response_200
 
@@ -51,7 +51,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[HTTPValidationError | SignupResponse]:
+) -> Response[HTTPValidationError | LoginResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -63,25 +63,24 @@ def _build_response(
 def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
-    body: SignupRequest,
-) -> Response[HTTPValidationError | SignupResponse]:
-    """Signup
+    body: LoginRequest,
+) -> Response[HTTPValidationError | LoginResponse]:
+    """Login
 
-     Create a new account and receive a read-only API key.
+     Request a verification code for passwordless login.
 
-    A 6-digit verification code is sent to the provided email. Call
-    POST /v2/auth/verify with the code (and this key in the Authorization
-    header) to upgrade to full access.
+    A 6-digit code is sent to the provided email. Exchange it via
+    POST /v2/auth/login/verify to receive a new API key.
 
     Args:
-        body (SignupRequest):
+        body (LoginRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | SignupResponse]
+        Response[HTTPValidationError | LoginResponse]
     """
 
     kwargs = _get_kwargs(
@@ -98,25 +97,24 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient | Client,
-    body: SignupRequest,
-) -> HTTPValidationError | SignupResponse | None:
-    """Signup
+    body: LoginRequest,
+) -> HTTPValidationError | LoginResponse | None:
+    """Login
 
-     Create a new account and receive a read-only API key.
+     Request a verification code for passwordless login.
 
-    A 6-digit verification code is sent to the provided email. Call
-    POST /v2/auth/verify with the code (and this key in the Authorization
-    header) to upgrade to full access.
+    A 6-digit code is sent to the provided email. Exchange it via
+    POST /v2/auth/login/verify to receive a new API key.
 
     Args:
-        body (SignupRequest):
+        body (LoginRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | SignupResponse
+        HTTPValidationError | LoginResponse
     """
 
     return sync_detailed(
@@ -128,25 +126,24 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
-    body: SignupRequest,
-) -> Response[HTTPValidationError | SignupResponse]:
-    """Signup
+    body: LoginRequest,
+) -> Response[HTTPValidationError | LoginResponse]:
+    """Login
 
-     Create a new account and receive a read-only API key.
+     Request a verification code for passwordless login.
 
-    A 6-digit verification code is sent to the provided email. Call
-    POST /v2/auth/verify with the code (and this key in the Authorization
-    header) to upgrade to full access.
+    A 6-digit code is sent to the provided email. Exchange it via
+    POST /v2/auth/login/verify to receive a new API key.
 
     Args:
-        body (SignupRequest):
+        body (LoginRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[HTTPValidationError | SignupResponse]
+        Response[HTTPValidationError | LoginResponse]
     """
 
     kwargs = _get_kwargs(
@@ -161,25 +158,24 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient | Client,
-    body: SignupRequest,
-) -> HTTPValidationError | SignupResponse | None:
-    """Signup
+    body: LoginRequest,
+) -> HTTPValidationError | LoginResponse | None:
+    """Login
 
-     Create a new account and receive a read-only API key.
+     Request a verification code for passwordless login.
 
-    A 6-digit verification code is sent to the provided email. Call
-    POST /v2/auth/verify with the code (and this key in the Authorization
-    header) to upgrade to full access.
+    A 6-digit code is sent to the provided email. Exchange it via
+    POST /v2/auth/login/verify to receive a new API key.
 
     Args:
-        body (SignupRequest):
+        body (LoginRequest):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        HTTPValidationError | SignupResponse
+        HTTPValidationError | LoginResponse
     """
 
     return (

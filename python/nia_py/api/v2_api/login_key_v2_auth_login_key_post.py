@@ -67,10 +67,9 @@ def sync_detailed(
 ) -> Response[HTTPValidationError | LoginKeyResponse]:
     """Login Key
 
-     Authenticate with email + password and receive a new nk_ API key.
+     **Deprecated** — Use POST /v2/auth/login + POST /v2/auth/login/verify instead.
 
-    For returning users who already have an account but need a new key
-    (e.g. an AI agent setting up in a new environment).
+    Authenticate with email + password and receive a new nk_ API key.
 
     Args:
         body (LoginKeyRequest):
@@ -101,10 +100,9 @@ def sync(
 ) -> HTTPValidationError | LoginKeyResponse | None:
     """Login Key
 
-     Authenticate with email + password and receive a new nk_ API key.
+     **Deprecated** — Use POST /v2/auth/login + POST /v2/auth/login/verify instead.
 
-    For returning users who already have an account but need a new key
-    (e.g. an AI agent setting up in a new environment).
+    Authenticate with email + password and receive a new nk_ API key.
 
     Args:
         body (LoginKeyRequest):
@@ -130,10 +128,9 @@ async def asyncio_detailed(
 ) -> Response[HTTPValidationError | LoginKeyResponse]:
     """Login Key
 
-     Authenticate with email + password and receive a new nk_ API key.
+     **Deprecated** — Use POST /v2/auth/login + POST /v2/auth/login/verify instead.
 
-    For returning users who already have an account but need a new key
-    (e.g. an AI agent setting up in a new environment).
+    Authenticate with email + password and receive a new nk_ API key.
 
     Args:
         body (LoginKeyRequest):
@@ -162,10 +159,9 @@ async def asyncio(
 ) -> HTTPValidationError | LoginKeyResponse | None:
     """Login Key
 
-     Authenticate with email + password and receive a new nk_ API key.
+     **Deprecated** — Use POST /v2/auth/login + POST /v2/auth/login/verify instead.
 
-    For returning users who already have an account but need a new key
-    (e.g. an AI agent setting up in a new environment).
+    Authenticate with email + password and receive a new nk_ API key.
 
     Args:
         body (LoginKeyRequest):

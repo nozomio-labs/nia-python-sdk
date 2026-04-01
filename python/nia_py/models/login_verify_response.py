@@ -1,32 +1,30 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-T = TypeVar("T", bound="SignupResponse")
+T = TypeVar("T", bound="LoginVerifyResponse")
 
 
 @_attrs_define
-class SignupResponse:
+class LoginVerifyResponse:
     """
     Attributes:
-        api_key (str): Read-only API key — verify via POST /v2/auth/verify to unlock full access
+        api_key (str): Your new nk_ API key — store it securely, it cannot be retrieved again
         api_key_id (str):
         user_id (str):
-        organization_id (str):
-        verified (bool | Unset): Whether the account has been verified (always false on signup) Default: False.
+        organization_id (None | str | Unset):
     """
 
     api_key: str
     api_key_id: str
     user_id: str
-    organization_id: str
-    verified: bool | Unset = False
+    organization_id: None | str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -36,9 +34,11 @@ class SignupResponse:
 
         user_id = self.user_id
 
-        organization_id = self.organization_id
-
-        verified = self.verified
+        organization_id: None | str | Unset
+        if isinstance(self.organization_id, Unset):
+            organization_id = UNSET
+        else:
+            organization_id = self.organization_id
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -47,11 +47,10 @@ class SignupResponse:
                 "api_key": api_key,
                 "api_key_id": api_key_id,
                 "user_id": user_id,
-                "organization_id": organization_id,
             }
         )
-        if verified is not UNSET:
-            field_dict["verified"] = verified
+        if organization_id is not UNSET:
+            field_dict["organization_id"] = organization_id
 
         return field_dict
 
@@ -64,20 +63,24 @@ class SignupResponse:
 
         user_id = d.pop("user_id")
 
-        organization_id = d.pop("organization_id")
+        def _parse_organization_id(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
 
-        verified = d.pop("verified", UNSET)
+        organization_id = _parse_organization_id(d.pop("organization_id", UNSET))
 
-        signup_response = cls(
+        login_verify_response = cls(
             api_key=api_key,
             api_key_id=api_key_id,
             user_id=user_id,
             organization_id=organization_id,
-            verified=verified,
         )
 
-        signup_response.additional_properties = d
-        return signup_response
+        login_verify_response.additional_properties = d
+        return login_verify_response
 
     @property
     def additional_keys(self) -> list[str]:

@@ -67,9 +67,9 @@ def sync_detailed(
 ) -> Response[BootstrapKeyResponse | HTTPValidationError]:
     """Bootstrap Key
 
-     Exchange a bootstrap token for an nk_ API key (one-time use).
+     **Deprecated** — Use POST /v2/auth/signup (returns key directly) + POST /v2/auth/verify instead.
 
-    The returned api_key is shown only once — store it securely.
+    Exchange a bootstrap token for an nk_ API key (one-time use).
 
     Args:
         body (BootstrapKeyRequest):
@@ -100,9 +100,9 @@ def sync(
 ) -> BootstrapKeyResponse | HTTPValidationError | None:
     """Bootstrap Key
 
-     Exchange a bootstrap token for an nk_ API key (one-time use).
+     **Deprecated** — Use POST /v2/auth/signup (returns key directly) + POST /v2/auth/verify instead.
 
-    The returned api_key is shown only once — store it securely.
+    Exchange a bootstrap token for an nk_ API key (one-time use).
 
     Args:
         body (BootstrapKeyRequest):
@@ -128,9 +128,9 @@ async def asyncio_detailed(
 ) -> Response[BootstrapKeyResponse | HTTPValidationError]:
     """Bootstrap Key
 
-     Exchange a bootstrap token for an nk_ API key (one-time use).
+     **Deprecated** — Use POST /v2/auth/signup (returns key directly) + POST /v2/auth/verify instead.
 
-    The returned api_key is shown only once — store it securely.
+    Exchange a bootstrap token for an nk_ API key (one-time use).
 
     Args:
         body (BootstrapKeyRequest):
@@ -159,9 +159,9 @@ async def asyncio(
 ) -> BootstrapKeyResponse | HTTPValidationError | None:
     """Bootstrap Key
 
-     Exchange a bootstrap token for an nk_ API key (one-time use).
+     **Deprecated** — Use POST /v2/auth/signup (returns key directly) + POST /v2/auth/verify instead.
 
-    The returned api_key is shown only once — store it securely.
+    Exchange a bootstrap token for an nk_ API key (one-time use).
 
     Args:
         body (BootstrapKeyRequest):

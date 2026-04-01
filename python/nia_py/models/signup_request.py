@@ -16,16 +16,16 @@ class SignupRequest:
     """
     Attributes:
         email (str): User email address
-        password (str): Account password (min 8 chars)
         organization_name (str): Organization name (required — all API keys are org-scoped)
+        password (None | str | Unset): Optional password for web login (random if omitted)
         first_name (None | str | Unset):
         last_name (None | str | Unset):
         idempotency_key (None | str | Unset): Idempotency key for safe retries
     """
 
     email: str
-    password: str
     organization_name: str
+    password: None | str | Unset = UNSET
     first_name: None | str | Unset = UNSET
     last_name: None | str | Unset = UNSET
     idempotency_key: None | str | Unset = UNSET
@@ -34,9 +34,13 @@ class SignupRequest:
     def to_dict(self) -> dict[str, Any]:
         email = self.email
 
-        password = self.password
-
         organization_name = self.organization_name
+
+        password: None | str | Unset
+        if isinstance(self.password, Unset):
+            password = UNSET
+        else:
+            password = self.password
 
         first_name: None | str | Unset
         if isinstance(self.first_name, Unset):
@@ -61,10 +65,11 @@ class SignupRequest:
         field_dict.update(
             {
                 "email": email,
-                "password": password,
                 "organization_name": organization_name,
             }
         )
+        if password is not UNSET:
+            field_dict["password"] = password
         if first_name is not UNSET:
             field_dict["first_name"] = first_name
         if last_name is not UNSET:
@@ -79,9 +84,16 @@ class SignupRequest:
         d = dict(src_dict)
         email = d.pop("email")
 
-        password = d.pop("password")
-
         organization_name = d.pop("organization_name")
+
+        def _parse_password(data: object) -> None | str | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            return cast(None | str | Unset, data)
+
+        password = _parse_password(d.pop("password", UNSET))
 
         def _parse_first_name(data: object) -> None | str | Unset:
             if data is None:
@@ -112,8 +124,8 @@ class SignupRequest:
 
         signup_request = cls(
             email=email,
-            password=password,
             organization_name=organization_name,
+            password=password,
             first_name=first_name,
             last_name=last_name,
             idempotency_key=idempotency_key,

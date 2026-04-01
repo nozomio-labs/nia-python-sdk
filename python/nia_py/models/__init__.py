@@ -107,6 +107,10 @@ from .list_sources_v2_sources_get_type_type_0 import ListSourcesV2SourcesGetType
 from .local_source_filters import LocalSourceFilters
 from .login_key_request import LoginKeyRequest
 from .login_key_response import LoginKeyResponse
+from .login_request import LoginRequest
+from .login_response import LoginResponse
+from .login_verify_request import LoginVerifyRequest
+from .login_verify_response import LoginVerifyResponse
 from .mapping_item import MappingItem
 from .mkdir_body import MkdirBody
 from .move_body import MoveBody
@@ -122,6 +126,7 @@ from .query_search_request_data_sources_item_type_1 import QuerySearchRequestDat
 from .query_search_request_local_folders_item_type_1 import QuerySearchRequestLocalFoldersItemType1
 from .query_search_request_messages_item import QuerySearchRequestMessagesItem
 from .query_search_request_repositories_item_type_1 import QuerySearchRequestRepositoriesItemType1
+from .resend_code_response import ResendCodeResponse
 from .resolve_source_v2_sources_resolve_get_type_type_0 import ResolveSourceV2SourcesResolveGetTypeType0
 from .search_query import SearchQuery
 from .search_scope import SearchScope
@@ -194,6 +199,8 @@ from .usage_summary_response import UsageSummaryResponse
 from .usage_summary_response_usage import UsageSummaryResponseUsage
 from .usage_summary_usage_entry import UsageSummaryUsageEntry
 from .validation_error import ValidationError
+from .verify_request import VerifyRequest
+from .verify_response import VerifyResponse
 from .web_search_request_with_mode import WebSearchRequestWithMode
 from .write_batch_body import WriteBatchBody
 from .write_file_body import WriteFileBody
@@ -296,6 +303,10 @@ __all__ = (
     "LocalSourceFilters",
     "LoginKeyRequest",
     "LoginKeyResponse",
+    "LoginRequest",
+    "LoginResponse",
+    "LoginVerifyRequest",
+    "LoginVerifyResponse",
     "MappingItem",
     "MkdirBody",
     "MoveBody",
@@ -311,6 +322,7 @@ __all__ = (
     "QuerySearchRequestLocalFoldersItemType1",
     "QuerySearchRequestMessagesItem",
     "QuerySearchRequestRepositoriesItemType1",
+    "ResendCodeResponse",
     "ResolveSourceV2SourcesResolveGetTypeType0",
     "SearchQuery",
     "SearchScope",
@@ -377,6 +389,8 @@ __all__ = (
     "UsageSummaryResponseUsage",
     "UsageSummaryUsageEntry",
     "ValidationError",
+    "VerifyRequest",
+    "VerifyResponse",
     "WebSearchRequestWithMode",
     "WriteBatchBody",
     "WriteFileBody",

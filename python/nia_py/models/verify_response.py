@@ -8,48 +8,25 @@ from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
 
-T = TypeVar("T", bound="SignupResponse")
+T = TypeVar("T", bound="VerifyResponse")
 
 
 @_attrs_define
-class SignupResponse:
+class VerifyResponse:
     """
     Attributes:
-        api_key (str): Read-only API key — verify via POST /v2/auth/verify to unlock full access
-        api_key_id (str):
-        user_id (str):
-        organization_id (str):
-        verified (bool | Unset): Whether the account has been verified (always false on signup) Default: False.
+        verified (bool | Unset):  Default: True.
     """
 
-    api_key: str
-    api_key_id: str
-    user_id: str
-    organization_id: str
-    verified: bool | Unset = False
+    verified: bool | Unset = True
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        api_key = self.api_key
-
-        api_key_id = self.api_key_id
-
-        user_id = self.user_id
-
-        organization_id = self.organization_id
-
         verified = self.verified
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "api_key": api_key,
-                "api_key_id": api_key_id,
-                "user_id": user_id,
-                "organization_id": organization_id,
-            }
-        )
+        field_dict.update({})
         if verified is not UNSET:
             field_dict["verified"] = verified
 
@@ -58,26 +35,14 @@ class SignupResponse:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        api_key = d.pop("api_key")
-
-        api_key_id = d.pop("api_key_id")
-
-        user_id = d.pop("user_id")
-
-        organization_id = d.pop("organization_id")
-
         verified = d.pop("verified", UNSET)
 
-        signup_response = cls(
-            api_key=api_key,
-            api_key_id=api_key_id,
-            user_id=user_id,
-            organization_id=organization_id,
+        verify_response = cls(
             verified=verified,
         )
 
-        signup_response.additional_properties = d
-        return signup_response
+        verify_response.additional_properties = d
+        return verify_response
 
     @property
     def additional_keys(self) -> list[str]:
