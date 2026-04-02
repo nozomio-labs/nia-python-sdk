@@ -25,14 +25,14 @@ class DocumentQueryResponse:
         answer (str):
         model (str):
         citations (list[DocumentCitation] | Unset):
-        structured_output (DocumentQueryResponseStructuredOutputType0 | None | Unset):
+        structured_output (DocumentQueryResponseStructuredOutputType0 | list[Any] | None | Unset):
         usage (DocumentQueryResponseUsageType0 | None | Unset):
     """
 
     answer: str
     model: str
     citations: list[DocumentCitation] | Unset = UNSET
-    structured_output: DocumentQueryResponseStructuredOutputType0 | None | Unset = UNSET
+    structured_output: DocumentQueryResponseStructuredOutputType0 | list[Any] | None | Unset = UNSET
     usage: DocumentQueryResponseUsageType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -51,11 +51,14 @@ class DocumentQueryResponse:
                 citations_item = citations_item_data.to_dict()
                 citations.append(citations_item)
 
-        structured_output: dict[str, Any] | None | Unset
+        structured_output: dict[str, Any] | list[Any] | None | Unset
         if isinstance(self.structured_output, Unset):
             structured_output = UNSET
         elif isinstance(self.structured_output, DocumentQueryResponseStructuredOutputType0):
             structured_output = self.structured_output.to_dict()
+        elif isinstance(self.structured_output, list):
+            structured_output = self.structured_output
+
         else:
             structured_output = self.structured_output
 
@@ -104,7 +107,9 @@ class DocumentQueryResponse:
 
                 citations.append(citations_item)
 
-        def _parse_structured_output(data: object) -> DocumentQueryResponseStructuredOutputType0 | None | Unset:
+        def _parse_structured_output(
+            data: object,
+        ) -> DocumentQueryResponseStructuredOutputType0 | list[Any] | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
@@ -117,7 +122,15 @@ class DocumentQueryResponse:
                 return structured_output_type_0
             except (TypeError, ValueError, AttributeError, KeyError):
                 pass
-            return cast(DocumentQueryResponseStructuredOutputType0 | None | Unset, data)
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                structured_output_type_1 = cast(list[Any], data)
+
+                return structured_output_type_1
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(DocumentQueryResponseStructuredOutputType0 | list[Any] | None | Unset, data)
 
         structured_output = _parse_structured_output(d.pop("structured_output", UNSET))
 
