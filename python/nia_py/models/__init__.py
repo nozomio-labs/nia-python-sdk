@@ -93,10 +93,12 @@ from .google_drive_install_request import GoogleDriveInstallRequest
 from .google_drive_o_auth_callback_request import GoogleDriveOAuthCallbackRequest
 from .google_drive_selection_request import GoogleDriveSelectionRequest
 from .google_drive_sync_request import GoogleDriveSyncRequest
+from .grep_request import GrepRequest
 from .grep_request_body import GrepRequestBody
 from .grep_source_v2_sources_source_id_grep_post_body import GrepSourceV2SourcesSourceIdGrepPostBody
 from .grep_source_v2_sources_source_id_grep_post_type_type_0 import GrepSourceV2SourcesSourceIdGrepPostTypeType0
 from .http_validation_error import HTTPValidationError
+from .index_request import IndexRequest
 from .indexed_resource import IndexedResource
 from .lineage_input import LineageInput
 from .lineage_metadata import LineageMetadata
@@ -291,11 +293,13 @@ __all__ = (
     "GoogleDriveOAuthCallbackRequest",
     "GoogleDriveSelectionRequest",
     "GoogleDriveSyncRequest",
+    "GrepRequest",
     "GrepRequestBody",
     "GrepSourceV2SourcesSourceIdGrepPostBody",
     "GrepSourceV2SourcesSourceIdGrepPostTypeType0",
     "HTTPValidationError",
     "IndexedResource",
+    "IndexRequest",
     "LineageInput",
     "LineageMetadata",
     "ListSourceAnnotationsV2SourcesSourceIdAnnotationsGetTypeType0",
