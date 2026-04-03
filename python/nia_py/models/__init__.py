@@ -182,6 +182,8 @@ from .subscription_results import SubscriptionResults
 from .subscription_summary import SubscriptionSummary
 from .sync_source_v2_sources_source_id_sync_post_body import SyncSourceV2SourcesSourceIdSyncPostBody
 from .sync_source_v2_sources_source_id_sync_post_type_type_0 import SyncSourceV2SourcesSourceIdSyncPostTypeType0
+from .telemetry_event import TelemetryEvent
+from .telemetry_payload import TelemetryPayload
 from .tracer_request import TracerRequest
 from .tracer_request_mode_type_0 import TracerRequestModeType0
 from .tracer_request_model_type_0 import TracerRequestModelType0
@@ -380,6 +382,8 @@ __all__ = (
     "SubscriptionSummary",
     "SyncSourceV2SourcesSourceIdSyncPostBody",
     "SyncSourceV2SourcesSourceIdSyncPostTypeType0",
+    "TelemetryEvent",
+    "TelemetryPayload",
     "TracerRequest",
     "TracerRequestModelType0",
     "TracerRequestModeType0",
