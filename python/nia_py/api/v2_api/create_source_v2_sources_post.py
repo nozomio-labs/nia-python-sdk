@@ -8,18 +8,31 @@ from ...client import AuthenticatedClient, Client
 from ...models.http_validation_error import HTTPValidationError
 from ...models.source import Source
 from ...models.source_create_request import SourceCreateRequest
-from ...types import Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
     body: SourceCreateRequest,
+    organization_id: None | str | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
+
+    params: dict[str, Any] = {}
+
+    json_organization_id: None | str | Unset
+    if isinstance(organization_id, Unset):
+        json_organization_id = UNSET
+    else:
+        json_organization_id = organization_id
+    params["organization_id"] = json_organization_id
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: dict[str, Any] = {
         "method": "post",
         "url": "/sources",
+        "params": params,
     }
 
     _kwargs["json"] = body.to_dict()
@@ -64,10 +77,12 @@ def sync_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SourceCreateRequest,
+    organization_id: None | str | Unset = UNSET,
 ) -> Response[HTTPValidationError | Source]:
     """Create Source
 
     Args:
+        organization_id (None | str | Unset): Organization ID for usage tracking
         body (SourceCreateRequest):
 
     Raises:
@@ -80,6 +95,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         body=body,
+        organization_id=organization_id,
     )
 
     response = client.get_httpx_client().request(
@@ -93,10 +109,12 @@ def sync(
     *,
     client: AuthenticatedClient | Client,
     body: SourceCreateRequest,
+    organization_id: None | str | Unset = UNSET,
 ) -> HTTPValidationError | Source | None:
     """Create Source
 
     Args:
+        organization_id (None | str | Unset): Organization ID for usage tracking
         body (SourceCreateRequest):
 
     Raises:
@@ -110,6 +128,7 @@ def sync(
     return sync_detailed(
         client=client,
         body=body,
+        organization_id=organization_id,
     ).parsed
 
 
@@ -117,10 +136,12 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient | Client,
     body: SourceCreateRequest,
+    organization_id: None | str | Unset = UNSET,
 ) -> Response[HTTPValidationError | Source]:
     """Create Source
 
     Args:
+        organization_id (None | str | Unset): Organization ID for usage tracking
         body (SourceCreateRequest):
 
     Raises:
@@ -133,6 +154,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         body=body,
+        organization_id=organization_id,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -144,10 +166,12 @@ async def asyncio(
     *,
     client: AuthenticatedClient | Client,
     body: SourceCreateRequest,
+    organization_id: None | str | Unset = UNSET,
 ) -> HTTPValidationError | Source | None:
     """Create Source
 
     Args:
+        organization_id (None | str | Unset): Organization ID for usage tracking
         body (SourceCreateRequest):
 
     Raises:
@@ -162,5 +186,6 @@ async def asyncio(
         await asyncio_detailed(
             client=client,
             body=body,
+            organization_id=organization_id,
         )
     ).parsed
