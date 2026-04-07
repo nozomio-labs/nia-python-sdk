@@ -4,6 +4,8 @@ from .advisor_request import AdvisorRequest
 from .advisor_request_output_format import AdvisorRequestOutputFormat
 from .advisor_response import AdvisorResponse
 from .analyze_response import AnalyzeResponse
+from .answer_feedback_request import AnswerFeedbackRequest
+from .answer_feedback_request_signal import AnswerFeedbackRequestSignal
 from .body_upload_and_subscribe_v2_dependencies_upload_post import BodyUploadAndSubscribeV2DependenciesUploadPost
 from .bootstrap_key_request import BootstrapKeyRequest
 from .bootstrap_key_response import BootstrapKeyResponse
@@ -160,6 +162,10 @@ from .source_curation_update_request import SourceCurationUpdateRequest
 from .source_curation_update_request_overlay_kind_type_0 import SourceCurationUpdateRequestOverlayKindType0
 from .source_curation_update_request_trust_level_type_0 import SourceCurationUpdateRequestTrustLevelType0
 from .source_delete_response import SourceDeleteResponse
+from .source_feedback_request import SourceFeedbackRequest
+from .source_feedback_request_signal import SourceFeedbackRequestSignal
+from .source_interaction_request import SourceInteractionRequest
+from .source_interaction_request_action import SourceInteractionRequestAction
 from .source_list_response import SourceListResponse
 from .source_metadata import SourceMetadata
 from .source_resolve_response import SourceResolveResponse
@@ -216,6 +222,8 @@ __all__ = (
     "AdvisorRequestOutputFormat",
     "AdvisorResponse",
     "AnalyzeResponse",
+    "AnswerFeedbackRequest",
+    "AnswerFeedbackRequestSignal",
     "BodyUploadAndSubscribeV2DependenciesUploadPost",
     "BootstrapKeyRequest",
     "BootstrapKeyResponse",
@@ -360,6 +368,10 @@ __all__ = (
     "SourceCurationUpdateRequestOverlayKindType0",
     "SourceCurationUpdateRequestTrustLevelType0",
     "SourceDeleteResponse",
+    "SourceFeedbackRequest",
+    "SourceFeedbackRequestSignal",
+    "SourceInteractionRequest",
+    "SourceInteractionRequestAction",
     "SourceListResponse",
     "SourceMetadata",
     "SourceResolveResponse",
