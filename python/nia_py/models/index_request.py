@@ -15,7 +15,7 @@ T = TypeVar("T", bound="IndexRequest")
 class IndexRequest:
     """
     Attributes:
-        url (str): Documentation URL to index
+        url (str): Documentation URL to index.
         force_refresh (bool | Unset):  Default: False.
     """
 
