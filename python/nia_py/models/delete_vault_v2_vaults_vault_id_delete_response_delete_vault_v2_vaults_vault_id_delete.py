@@ -6,11 +6,11 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="DocumentQueryResponseStructuredOutputType0")
+T = TypeVar("T", bound="DeleteVaultV2VaultsVaultIdDeleteResponseDeleteVaultV2VaultsVaultIdDelete")
 
 
 @_attrs_define
-class DocumentQueryResponseStructuredOutputType0:
+class DeleteVaultV2VaultsVaultIdDeleteResponseDeleteVaultV2VaultsVaultIdDelete:
     """ """
 
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -25,10 +25,10 @@ class DocumentQueryResponseStructuredOutputType0:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        document_query_response_structured_output_type_0 = cls()
+        delete_vault_v2_vaults_vault_id_delete_response_delete_vault_v2_vaults_vault_id_delete = cls()
 
-        document_query_response_structured_output_type_0.additional_properties = d
-        return document_query_response_structured_output_type_0
+        delete_vault_v2_vaults_vault_id_delete_response_delete_vault_v2_vaults_vault_id_delete.additional_properties = d
+        return delete_vault_v2_vaults_vault_id_delete_response_delete_vault_v2_vaults_vault_id_delete
 
     @property
     def additional_keys(self) -> list[str]:

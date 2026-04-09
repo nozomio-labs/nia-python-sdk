@@ -10,7 +10,6 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.document_citation import DocumentCitation
-    from ..models.document_query_response_structured_output_type_0 import DocumentQueryResponseStructuredOutputType0
     from ..models.document_query_response_usage_type_0 import DocumentQueryResponseUsageType0
 
 
@@ -25,19 +24,18 @@ class DocumentQueryResponse:
         answer (str):
         model (str):
         citations (list[DocumentCitation] | Unset):
-        structured_output (DocumentQueryResponseStructuredOutputType0 | list[Any] | None | Unset):
+        structured_output (Any | None | Unset):
         usage (DocumentQueryResponseUsageType0 | None | Unset):
     """
 
     answer: str
     model: str
     citations: list[DocumentCitation] | Unset = UNSET
-    structured_output: DocumentQueryResponseStructuredOutputType0 | list[Any] | None | Unset = UNSET
+    structured_output: Any | None | Unset = UNSET
     usage: DocumentQueryResponseUsageType0 | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.document_query_response_structured_output_type_0 import DocumentQueryResponseStructuredOutputType0
         from ..models.document_query_response_usage_type_0 import DocumentQueryResponseUsageType0
 
         answer = self.answer
@@ -51,14 +49,9 @@ class DocumentQueryResponse:
                 citations_item = citations_item_data.to_dict()
                 citations.append(citations_item)
 
-        structured_output: dict[str, Any] | list[Any] | None | Unset
+        structured_output: Any | None | Unset
         if isinstance(self.structured_output, Unset):
             structured_output = UNSET
-        elif isinstance(self.structured_output, DocumentQueryResponseStructuredOutputType0):
-            structured_output = self.structured_output.to_dict()
-        elif isinstance(self.structured_output, list):
-            structured_output = self.structured_output
-
         else:
             structured_output = self.structured_output
 
@@ -90,7 +83,6 @@ class DocumentQueryResponse:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.document_citation import DocumentCitation
-        from ..models.document_query_response_structured_output_type_0 import DocumentQueryResponseStructuredOutputType0
         from ..models.document_query_response_usage_type_0 import DocumentQueryResponseUsageType0
 
         d = dict(src_dict)
@@ -107,30 +99,12 @@ class DocumentQueryResponse:
 
                 citations.append(citations_item)
 
-        def _parse_structured_output(
-            data: object,
-        ) -> DocumentQueryResponseStructuredOutputType0 | list[Any] | None | Unset:
+        def _parse_structured_output(data: object) -> Any | None | Unset:
             if data is None:
                 return data
             if isinstance(data, Unset):
                 return data
-            try:
-                if not isinstance(data, dict):
-                    raise TypeError()
-                structured_output_type_0 = DocumentQueryResponseStructuredOutputType0.from_dict(data)
-
-                return structured_output_type_0
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            try:
-                if not isinstance(data, list):
-                    raise TypeError()
-                structured_output_type_1 = cast(list[Any], data)
-
-                return structured_output_type_1
-            except (TypeError, ValueError, AttributeError, KeyError):
-                pass
-            return cast(DocumentQueryResponseStructuredOutputType0 | list[Any] | None | Unset, data)
+            return cast(Any | None | Unset, data)
 
         structured_output = _parse_structured_output(d.pop("structured_output", UNSET))
 

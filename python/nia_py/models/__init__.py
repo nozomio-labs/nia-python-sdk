@@ -1,5 +1,8 @@
 """Contains all the data models used in inputs/outputs"""
 
+from .add_vault_source_v2_vaults_vault_id_sources_post_response_add_vault_source_v2_vaults_vault_id_sources_post import (
+    AddVaultSourceV2VaultsVaultIdSourcesPostResponseAddVaultSourceV2VaultsVaultIdSourcesPost,
+)
 from .advisor_request import AdvisorRequest
 from .advisor_request_output_format import AdvisorRequestOutputFormat
 from .advisor_response import AdvisorResponse
@@ -14,6 +17,9 @@ from .bulk_delete_item_type import BulkDeleteItemType
 from .bulk_delete_request import BulkDeleteRequest
 from .bulk_delete_response import BulkDeleteResponse
 from .bulk_delete_result import BulkDeleteResult
+from .cancel_vault_workflow_v2_vaults_vault_id_cancel_post_response_cancel_vault_workflow_v2_vaults_vault_id_cancel_post import (
+    CancelVaultWorkflowV2VaultsVaultIdCancelPostResponseCancelVaultWorkflowV2VaultsVaultIdCancelPost,
+)
 from .category_create import CategoryCreate
 from .category_list_compat_response import CategoryListCompatResponse
 from .category_list_compat_response_categories_item import CategoryListCompatResponseCategoriesItem
@@ -39,6 +45,9 @@ from .context_share_response_metadata import ContextShareResponseMetadata
 from .create_source_annotation_v2_sources_source_id_annotations_post_type_type_0 import (
     CreateSourceAnnotationV2SourcesSourceIdAnnotationsPostTypeType0,
 )
+from .create_vault_v2_vaults_post_response_create_vault_v2_vaults_post import (
+    CreateVaultV2VaultsPostResponseCreateVaultV2VaultsPost,
+)
 from .daily_usage_1m_response import DailyUsage1MResponse
 from .database_file_item import DatabaseFileItem
 from .deep_research_request_with_mode import DeepResearchRequestWithMode
@@ -47,6 +56,9 @@ from .delete_source_annotation_v2_sources_source_id_annotations_annotation_id_de
     DeleteSourceAnnotationV2SourcesSourceIdAnnotationsAnnotationIdDeleteTypeType0,
 )
 from .delete_source_v2_sources_source_id_delete_type_type_0 import DeleteSourceV2SourcesSourceIdDeleteTypeType0
+from .delete_vault_v2_vaults_vault_id_delete_response_delete_vault_v2_vaults_vault_id_delete import (
+    DeleteVaultV2VaultsVaultIdDeleteResponseDeleteVaultV2VaultsVaultIdDelete,
+)
 from .dependency_analyze_request import DependencyAnalyzeRequest
 from .dependency_analyze_request_manifest_type_type_0 import DependencyAnalyzeRequestManifestTypeType0
 from .dependency_item import DependencyItem
@@ -55,11 +67,11 @@ from .dependency_subscribe_request_manifest_type_type_0 import DependencySubscri
 from .detect_request import DetectRequest
 from .detect_response import DetectResponse
 from .detect_response_result_type_0 import DetectResponseResultType0
+from .document_agent_job_response import DocumentAgentJobResponse
 from .document_citation import DocumentCitation
 from .document_query_request import DocumentQueryRequest
 from .document_query_request_json_schema_type_0 import DocumentQueryRequestJsonSchemaType0
 from .document_query_response import DocumentQueryResponse
-from .document_query_response_structured_output_type_0 import DocumentQueryResponseStructuredOutputType0
 from .document_query_response_usage_type_0 import DocumentQueryResponseUsageType0
 from .edited_file import EditedFile
 from .engineering_extract_request import EngineeringExtractRequest
@@ -84,6 +96,9 @@ from .get_source_curation_v2_sources_source_id_curation_get_type_type_0 import (
 )
 from .get_source_tree_v2_sources_source_id_tree_get_type_type_0 import GetSourceTreeV2SourcesSourceIdTreeGetTypeType0
 from .get_source_v2_sources_source_id_get_type_type_0 import GetSourceV2SourcesSourceIdGetTypeType0
+from .get_vault_v2_vaults_vault_id_get_response_get_vault_v2_vaults_vault_id_get import (
+    GetVaultV2VaultsVaultIdGetResponseGetVaultV2VaultsVaultIdGet,
+)
 from .git_hub_glob_request import GitHubGlobRequest
 from .git_hub_read_request import GitHubReadRequest
 from .git_hub_search_request import GitHubSearchRequest
@@ -100,6 +115,8 @@ from .grep_request_body import GrepRequestBody
 from .grep_source_v2_sources_source_id_grep_post_body import GrepSourceV2SourcesSourceIdGrepPostBody
 from .grep_source_v2_sources_source_id_grep_post_type_type_0 import GrepSourceV2SourcesSourceIdGrepPostTypeType0
 from .http_validation_error import HTTPValidationError
+from .import_request import ImportRequest
+from .import_request_manifest import ImportRequestManifest
 from .index_request import IndexRequest
 from .indexed_resource import IndexedResource
 from .lineage_input import LineageInput
@@ -108,6 +125,15 @@ from .list_source_annotations_v2_sources_source_id_annotations_get_type_type_0 i
     ListSourceAnnotationsV2SourcesSourceIdAnnotationsGetTypeType0,
 )
 from .list_sources_v2_sources_get_type_type_0 import ListSourcesV2SourcesGetTypeType0
+from .list_vault_sources_v2_vaults_vault_id_sources_get_response_list_vault_sources_v2_vaults_vault_id_sources_get import (
+    ListVaultSourcesV2VaultsVaultIdSourcesGetResponseListVaultSourcesV2VaultsVaultIdSourcesGet,
+)
+from .list_vaults_v2_vaults_get_response_list_vaults_v2_vaults_get import (
+    ListVaultsV2VaultsGetResponseListVaultsV2VaultsGet,
+)
+from .load_vault_v2_vaults_vault_id_load_get_response_load_vault_v2_vaults_vault_id_load_get import (
+    LoadVaultV2VaultsVaultIdLoadGetResponseLoadVaultV2VaultsVaultIdLoadGet,
+)
 from .local_source_filters import LocalSourceFilters
 from .login_key_request import LoginKeyRequest
 from .login_key_response import LoginKeyResponse
@@ -125,15 +151,27 @@ from .package_search_grep_request import PackageSearchGrepRequest
 from .package_search_hybrid_request import PackageSearchHybridRequest
 from .package_search_read_file_request import PackageSearchReadFileRequest
 from .pagination_info import PaginationInfo
+from .patch_vault_v2_vaults_vault_id_patch_response_patch_vault_v2_vaults_vault_id_patch import (
+    PatchVaultV2VaultsVaultIdPatchResponsePatchVaultV2VaultsVaultIdPatch,
+)
 from .query_search_request import QuerySearchRequest
 from .query_search_request_data_sources_item_type_1 import QuerySearchRequestDataSourcesItemType1
 from .query_search_request_local_folders_item_type_1 import QuerySearchRequestLocalFoldersItemType1
 from .query_search_request_messages_item import QuerySearchRequestMessagesItem
 from .query_search_request_repositories_item_type_1 import QuerySearchRequestRepositoriesItemType1
+from .remove_vault_source_v2_vaults_vault_id_sources_source_id_delete_response_remove_vault_source_v2_vaults_vault_id_sources_source_id_delete import (
+    RemoveVaultSourceV2VaultsVaultIdSourcesSourceIdDeleteResponseRemoveVaultSourceV2VaultsVaultIdSourcesSourceIdDelete,
+)
 from .resend_code_response import ResendCodeResponse
 from .resolve_source_v2_sources_resolve_get_type_type_0 import ResolveSourceV2SourcesResolveGetTypeType0
+from .run_vault_workflow_v2_vaults_vault_id_run_post_response_run_vault_workflow_v2_vaults_vault_id_run_post import (
+    RunVaultWorkflowV2VaultsVaultIdRunPostResponseRunVaultWorkflowV2VaultsVaultIdRunPost,
+)
 from .search_query import SearchQuery
 from .search_scope import SearchScope
+from .search_vault_v2_vaults_vault_id_search_post_response_search_vault_v2_vaults_vault_id_search_post import (
+    SearchVaultV2VaultsVaultIdSearchPostResponseSearchVaultV2VaultsVaultIdSearchPost,
+)
 from .signup_request import SignupRequest
 from .signup_response import SignupResponse
 from .slack_channels_config_request import SlackChannelsConfigRequest
@@ -209,6 +247,9 @@ from .usage_summary_response import UsageSummaryResponse
 from .usage_summary_response_usage import UsageSummaryResponseUsage
 from .usage_summary_usage_entry import UsageSummaryUsageEntry
 from .validation_error import ValidationError
+from .vault_graph_v2_vaults_vault_id_graph_get_response_vault_graph_v2_vaults_vault_id_graph_get import (
+    VaultGraphV2VaultsVaultIdGraphGetResponseVaultGraphV2VaultsVaultIdGraphGet,
+)
 from .verify_request import VerifyRequest
 from .verify_response import VerifyResponse
 from .web_search_request_with_mode import WebSearchRequestWithMode
@@ -218,6 +259,7 @@ from .write_file_body_headers_type_0 import WriteFileBodyHeadersType0
 from .x_installation_request import XInstallationRequest
 
 __all__ = (
+    "AddVaultSourceV2VaultsVaultIdSourcesPostResponseAddVaultSourceV2VaultsVaultIdSourcesPost",
     "AdvisorRequest",
     "AdvisorRequestOutputFormat",
     "AdvisorResponse",
@@ -232,6 +274,7 @@ __all__ = (
     "BulkDeleteRequest",
     "BulkDeleteResponse",
     "BulkDeleteResult",
+    "CancelVaultWorkflowV2VaultsVaultIdCancelPostResponseCancelVaultWorkflowV2VaultsVaultIdCancelPost",
     "CategoryCreate",
     "CategoryListCompatResponse",
     "CategoryListCompatResponseCategoriesItem",
@@ -255,12 +298,14 @@ __all__ = (
     "ContextShareResponseMemoryType",
     "ContextShareResponseMetadata",
     "CreateSourceAnnotationV2SourcesSourceIdAnnotationsPostTypeType0",
+    "CreateVaultV2VaultsPostResponseCreateVaultV2VaultsPost",
     "DailyUsage1MResponse",
     "DatabaseFileItem",
     "DeepResearchRequestWithMode",
     "DeleteResponse",
     "DeleteSourceAnnotationV2SourcesSourceIdAnnotationsAnnotationIdDeleteTypeType0",
     "DeleteSourceV2SourcesSourceIdDeleteTypeType0",
+    "DeleteVaultV2VaultsVaultIdDeleteResponseDeleteVaultV2VaultsVaultIdDelete",
     "DependencyAnalyzeRequest",
     "DependencyAnalyzeRequestManifestTypeType0",
     "DependencyItem",
@@ -269,11 +314,11 @@ __all__ = (
     "DetectRequest",
     "DetectResponse",
     "DetectResponseResultType0",
+    "DocumentAgentJobResponse",
     "DocumentCitation",
     "DocumentQueryRequest",
     "DocumentQueryRequestJsonSchemaType0",
     "DocumentQueryResponse",
-    "DocumentQueryResponseStructuredOutputType0",
     "DocumentQueryResponseUsageType0",
     "EditedFile",
     "EngineeringExtractRequest",
@@ -292,6 +337,7 @@ __all__ = (
     "GetSourceCurationV2SourcesSourceIdCurationGetTypeType0",
     "GetSourceTreeV2SourcesSourceIdTreeGetTypeType0",
     "GetSourceV2SourcesSourceIdGetTypeType0",
+    "GetVaultV2VaultsVaultIdGetResponseGetVaultV2VaultsVaultIdGet",
     "GitHubGlobRequest",
     "GitHubReadRequest",
     "GitHubSearchRequest",
@@ -308,12 +354,17 @@ __all__ = (
     "GrepSourceV2SourcesSourceIdGrepPostBody",
     "GrepSourceV2SourcesSourceIdGrepPostTypeType0",
     "HTTPValidationError",
+    "ImportRequest",
+    "ImportRequestManifest",
     "IndexedResource",
     "IndexRequest",
     "LineageInput",
     "LineageMetadata",
     "ListSourceAnnotationsV2SourcesSourceIdAnnotationsGetTypeType0",
     "ListSourcesV2SourcesGetTypeType0",
+    "ListVaultSourcesV2VaultsVaultIdSourcesGetResponseListVaultSourcesV2VaultsVaultIdSourcesGet",
+    "ListVaultsV2VaultsGetResponseListVaultsV2VaultsGet",
+    "LoadVaultV2VaultsVaultIdLoadGetResponseLoadVaultV2VaultsVaultIdLoadGet",
     "LocalSourceFilters",
     "LoginKeyRequest",
     "LoginKeyResponse",
@@ -331,15 +382,19 @@ __all__ = (
     "PackageSearchHybridRequest",
     "PackageSearchReadFileRequest",
     "PaginationInfo",
+    "PatchVaultV2VaultsVaultIdPatchResponsePatchVaultV2VaultsVaultIdPatch",
     "QuerySearchRequest",
     "QuerySearchRequestDataSourcesItemType1",
     "QuerySearchRequestLocalFoldersItemType1",
     "QuerySearchRequestMessagesItem",
     "QuerySearchRequestRepositoriesItemType1",
+    "RemoveVaultSourceV2VaultsVaultIdSourcesSourceIdDeleteResponseRemoveVaultSourceV2VaultsVaultIdSourcesSourceIdDelete",
     "ResendCodeResponse",
     "ResolveSourceV2SourcesResolveGetTypeType0",
+    "RunVaultWorkflowV2VaultsVaultIdRunPostResponseRunVaultWorkflowV2VaultsVaultIdRunPost",
     "SearchQuery",
     "SearchScope",
+    "SearchVaultV2VaultsVaultIdSearchPostResponseSearchVaultV2VaultsVaultIdSearchPost",
     "SignupRequest",
     "SignupResponse",
     "SlackChannelsConfigRequest",
@@ -409,6 +464,7 @@ __all__ = (
     "UsageSummaryResponseUsage",
     "UsageSummaryUsageEntry",
     "ValidationError",
+    "VaultGraphV2VaultsVaultIdGraphGetResponseVaultGraphV2VaultsVaultIdGraphGet",
     "VerifyRequest",
     "VerifyResponse",
     "WebSearchRequestWithMode",

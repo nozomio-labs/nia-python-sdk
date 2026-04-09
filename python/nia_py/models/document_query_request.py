@@ -22,7 +22,7 @@ class DocumentQueryRequest:
     Attributes:
         query (str): Question to ask about the document(s)
         source_id (None | str | Unset): Data source ID of a single indexed document
-        source_ids (list[str] | None | Unset): List of data source IDs for multi-document queries (max 10)
+        source_ids (list[str] | None | Unset): List of data source IDs for multi-document queries (max 50)
         json_schema (DocumentQueryRequestJsonSchemaType0 | None | Unset): JSON Schema for structured output
         model (str | Unset): Model to use (claude-opus-4-6-1m, claude-opus-4-6, claude-sonnet-4-5-20250929, etc.)
             Default: 'claude-opus-4-6-1m'.
