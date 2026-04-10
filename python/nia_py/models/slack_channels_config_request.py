@@ -19,11 +19,13 @@ class SlackChannelsConfigRequest:
         mode (str | Unset): 'all' to index all channels, 'selected' to pick specific ones Default: 'all'.
         include_channels (list[str] | None | Unset): Channel IDs to include (when mode='selected')
         exclude_channels (list[str] | None | Unset): Channel IDs to exclude
+        live_sync_channels (list[str] | None | Unset): Channel IDs to enable real-time sync (bot joins these channels)
     """
 
     mode: str | Unset = "all"
     include_channels: list[str] | None | Unset = UNSET
     exclude_channels: list[str] | None | Unset = UNSET
+    live_sync_channels: list[str] | None | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -47,6 +49,15 @@ class SlackChannelsConfigRequest:
         else:
             exclude_channels = self.exclude_channels
 
+        live_sync_channels: list[str] | None | Unset
+        if isinstance(self.live_sync_channels, Unset):
+            live_sync_channels = UNSET
+        elif isinstance(self.live_sync_channels, list):
+            live_sync_channels = self.live_sync_channels
+
+        else:
+            live_sync_channels = self.live_sync_channels
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -56,6 +67,8 @@ class SlackChannelsConfigRequest:
             field_dict["include_channels"] = include_channels
         if exclude_channels is not UNSET:
             field_dict["exclude_channels"] = exclude_channels
+        if live_sync_channels is not UNSET:
+            field_dict["live_sync_channels"] = live_sync_channels
 
         return field_dict
 
@@ -98,10 +111,28 @@ class SlackChannelsConfigRequest:
 
         exclude_channels = _parse_exclude_channels(d.pop("exclude_channels", UNSET))
 
+        def _parse_live_sync_channels(data: object) -> list[str] | None | Unset:
+            if data is None:
+                return data
+            if isinstance(data, Unset):
+                return data
+            try:
+                if not isinstance(data, list):
+                    raise TypeError()
+                live_sync_channels_type_0 = cast(list[str], data)
+
+                return live_sync_channels_type_0
+            except (TypeError, ValueError, AttributeError, KeyError):
+                pass
+            return cast(list[str] | None | Unset, data)
+
+        live_sync_channels = _parse_live_sync_channels(d.pop("live_sync_channels", UNSET))
+
         slack_channels_config_request = cls(
             mode=mode,
             include_channels=include_channels,
             exclude_channels=exclude_channels,
+            live_sync_channels=live_sync_channels,
         )
 
         slack_channels_config_request.additional_properties = d

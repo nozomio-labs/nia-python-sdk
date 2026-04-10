@@ -18,7 +18,7 @@ class XInstallationRequest:
         username (str): X username to index (with or without @)
         bearer_token (str): X API bearer token
         display_name (None | str | Unset): Optional custom display name for this source
-        max_results (int | Unset): Maximum number of recent posts to index Default: 100.
+        max_results (int | Unset): Maximum number of recent posts to index Default: 500.
         include_replies (bool | Unset): Whether replies should be indexed Default: False.
         include_retweets (bool | Unset): Whether reposts/retweets should be indexed Default: False.
     """
@@ -26,7 +26,7 @@ class XInstallationRequest:
     username: str
     bearer_token: str
     display_name: None | str | Unset = UNSET
-    max_results: int | Unset = 100
+    max_results: int | Unset = 500
     include_replies: bool | Unset = False
     include_retweets: bool | Unset = False
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
