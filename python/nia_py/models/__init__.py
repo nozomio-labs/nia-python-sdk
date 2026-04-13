@@ -42,6 +42,7 @@ from .context_semantic_search_suggestions import ContextSemanticSearchSuggestion
 from .context_share_response import ContextShareResponse
 from .context_share_response_memory_type import ContextShareResponseMemoryType
 from .context_share_response_metadata import ContextShareResponseMetadata
+from .create_filesystem_body import CreateFilesystemBody
 from .create_source_annotation_v2_sources_source_id_annotations_post_type_type_0 import (
     CreateSourceAnnotationV2SourcesSourceIdAnnotationsPostTypeType0,
 )
@@ -80,6 +81,7 @@ from .engineering_extract_response_chat_messages_item import EngineeringExtractR
 from .engineering_extract_response_result_type_0 import EngineeringExtractResponseResultType0
 from .engineering_query_request import EngineeringQueryRequest
 from .engineering_query_request_conversation_history_item import EngineeringQueryRequestConversationHistoryItem
+from .exec_body import ExecBody
 from .extract_request import ExtractRequest
 from .extract_request_json_schema import ExtractRequestJsonSchema
 from .extract_response import ExtractResponse
@@ -300,6 +302,7 @@ __all__ = (
     "ContextShareResponse",
     "ContextShareResponseMemoryType",
     "ContextShareResponseMetadata",
+    "CreateFilesystemBody",
     "CreateSourceAnnotationV2SourcesSourceIdAnnotationsPostTypeType0",
     "CreateVaultV2VaultsPostResponseCreateVaultV2VaultsPost",
     "DailyUsage1MResponse",
@@ -330,6 +333,7 @@ __all__ = (
     "EngineeringExtractResponseResultType0",
     "EngineeringQueryRequest",
     "EngineeringQueryRequestConversationHistoryItem",
+    "ExecBody",
     "ExtractRequest",
     "ExtractRequestJsonSchema",
     "ExtractResponse",
