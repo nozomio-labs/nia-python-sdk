@@ -121,6 +121,9 @@ from .index_request import IndexRequest
 from .indexed_resource import IndexedResource
 from .lineage_input import LineageInput
 from .lineage_metadata import LineageMetadata
+from .list_available_sources_v2_vaults_available_sources_get_response_list_available_sources_v2_vaults_available_sources_get import (
+    ListAvailableSourcesV2VaultsAvailableSourcesGetResponseListAvailableSourcesV2VaultsAvailableSourcesGet,
+)
 from .list_source_annotations_v2_sources_source_id_annotations_get_type_type_0 import (
     ListSourceAnnotationsV2SourcesSourceIdAnnotationsGetTypeType0,
 )
@@ -360,6 +363,7 @@ __all__ = (
     "IndexRequest",
     "LineageInput",
     "LineageMetadata",
+    "ListAvailableSourcesV2VaultsAvailableSourcesGetResponseListAvailableSourcesV2VaultsAvailableSourcesGet",
     "ListSourceAnnotationsV2SourcesSourceIdAnnotationsGetTypeType0",
     "ListSourcesV2SourcesGetTypeType0",
     "ListVaultSourcesV2VaultsVaultIdSourcesGetResponseListVaultSourcesV2VaultsVaultIdSourcesGet",
